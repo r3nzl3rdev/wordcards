@@ -23,7 +23,7 @@ const List: React.FC = () => {
           </span>{" "}
           harfi bilan boshlanadigan prefikslar ro'yxati:
         </p>
-        <div className="flex gap-[300px] w-full text-gray-500 text-xl px-4">
+        <div className="flex gap-[20%] w-full text-gray-500 text-xl px-4">
           <div className="flex flex-col gap-3">
             {prefixList.slice(0, prefixList.length / 2).map((prefix, index) => {
               return (
