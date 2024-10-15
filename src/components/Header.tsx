@@ -1,55 +1,19 @@
+import React from "react";
 import Input from "./Input";
 import Menu from "./Menu";
+import { menuOptions } from "../config/menuConfig";
+import Button from "./Button";
 
-const Header = () => {
-  const menuOptions = [
-    {
-      title: "Home", // Главная
-      route: "/home",
-    },
-    {
-      title: "Irregular Verbs",
-      route: "/irregular-verbs",
-    },
-    {
-      title: "Plural", // Множественное число
-      route: "/plural",
-    },
-    {
-      title: "Palindromes", // Палиндромы
-      route: "/palindromes",
-    },
-    {
-      title: "Numerals", // Числительные
-      route: "/numerals",
-    },
-    {
-      title: "Word Selection", // Подбор слов
-      route: "/word-selection",
-    },
-    {
-      title: "Bulk Translation", // Массовый перевод
-      route: "/bulk-translation",
-    },
-    {
-      title: "Frequency List", // Частотный список
-      route: "/frequency-list",
-    },
-    {
-      title: "Spaced Repetition Method", // Метод интервальных повторений
-      route: "/spaced-repetition",
-    },
-    {
-      title: "Reviews", // Отзывы
-      route: "/reviews",
-    },
-  ];
+const Header: React.FC = () => {
   return (
     <div className="flex w-full justify-between bg-green-primary">
       <div className="flex">
         <Menu options={menuOptions} />
         <Input placeholder="So'z qidirish..." />
       </div>
+      <Button className="text-lg text-white hover:text-black hover:bg-gray-300">
+        Kirish
+      </Button>
     </div>
   );
 };
