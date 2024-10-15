@@ -40,7 +40,7 @@ const Menu: React.FC<MenuProps> = ({ options }) => {
   return (
     <div
       ref={menuRef}
-      className="flex items-center justify-between text-white hover:text-black hover:bg-gray-300"
+      className={`${isMenuOpen ? "bg-gray-300 text-black" : "text-white"} flex items-center justify-between hover:text-black lg:hover:bg-gray-300 lg:active::bg-gray-300`}
     >
       <Button className="gap-1 h-full" onClick={toggleMenu}>
         <i className="fa-solid fa-bars"></i>
