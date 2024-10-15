@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 interface Option {
   title: string;
@@ -12,26 +13,53 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ options }) => {
   const toggleMenu = () => {
-    SetIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prevState) => !prevState);
   };
 
-  const [isMenuOpen, SetIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
-    <div className="flex w-full items-center justify-between group text-white hover:text-black hover:bg-gray-300">
-      <Button className="gap-1" onClick={toggleMenu}>
+    <div
+      ref={menuRef}
+      className="flex items-center justify-between text-white hover:text-black hover:bg-gray-300"
+    >
+      <Button className="gap-1 h-full" onClick={toggleMenu}>
         <i className="fa-solid fa-bars"></i>
         <p className="text-md hidden sm:flex">Menu</p>
       </Button>
-      <div className="absolute hidden group-hover:flex flex-col left-0 top-[45px] bg-white shadow-lg shadow-gray-400 text-md">
-        {options.map((option, index) => (
-          <div
-            key={index}
-            className="p-2 hover:cursor-pointer hover:bg-gray-300"
-          >
-            <p className="whitespace-nowrap">{option.title}</p>
-          </div>
-        ))}
-      </div>
+      {isMenuOpen && (
+        <div className="absolute flex flex-col left-0 top-[45px] bg-white text-black shadow-lg shadow-gray-400 text-md">
+          {options.map((option, index) => (
+            <Link
+              to={option.route}
+              key={index}
+              className="p-2 hover:cursor-pointer hover:bg-gray-300"
+              onClick={toggleMenu}
+            >
+              <p className="whitespace-nowrap">{option.title}</p>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
