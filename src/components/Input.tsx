@@ -1,7 +1,7 @@
 import React from "react";
 
 interface InputProps {
-  placeholder: string; // Define the type for the placeholder prop
+  placeholder: string;
 }
 
 const Input: React.FC<InputProps> = ({ placeholder }) => {
