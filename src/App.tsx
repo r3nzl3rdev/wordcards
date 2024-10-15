@@ -5,7 +5,9 @@ function App() {
   return (
     <>
       <Header />
-      <Outlet />
+      <div className="py-8">
+        <Outlet />
+      </div>
     </>
   );
 }

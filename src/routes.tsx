@@ -10,6 +10,7 @@ import FrequencyList from "./pages/FrequencyList.tsx";
 import SpacedRepetition from "./pages/SpacedRepetition.tsx";
 import Reviews from "./pages/Reviews.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import List from "./pages/List.tsx";
 
 const routes = [
   {
@@ -53,6 +54,10 @@ const routes = [
       {
         path: "reviews",
         element: <Reviews />,
+      },
+      {
+        path: "list/:letter",
+        element: <List />,
       },
     ],
   },
