@@ -5,7 +5,7 @@ import prefixList from "../hardcode/hardcode";
 const List: React.FC = () => {
   const { letter } = useParams<{ letter: string }>();
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center px-4">
       <div className="flex flex-col gap-4 w-full max-w-[936px]">
         <h1 className="text-4xl font-bold">English-Uzbek Lug'at</h1>
         <p>
