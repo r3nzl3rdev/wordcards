@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import prefixList from "../hardcode/hardcode";
+import { prefixList } from "../hardcode/hardcode";
 
 const List: React.FC = () => {
   const { letter } = useParams<{ letter: string }>();

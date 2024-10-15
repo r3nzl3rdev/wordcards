@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { wordsList } from "../../hardcode/hardcode";
 
 const Home: React.FC = () => {
   const alphabet = Array.from({ length: 26 }, (_, i) =>
@@ -27,14 +28,18 @@ const Home: React.FC = () => {
         </div>
 
         <p className="text-2xl font-bold">Eng ko'p ishlatilinadigan so'zlar</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum impedit
-          ab mollitia cumque repellat nam voluptates! Qui, quidem? Minus, nam
-          quo veniam tempore debitis eveniet sed numquam laudantium? Temporibus,
-          officia natus? Fugiat odio veritatis voluptatum tenetur. Iure
-          necessitatibus modi ducimus, quo corporis ad non adipisci quae,
-          accusamus eligendi pariatur incidunt.
-        </p>
+        <div className="flex gap-1 flex-wrap">
+          {wordsList.map((word, index) => {
+            return (
+              <Link key={index} to={`en/${word}`}>
+                <span className="text-blue-500 hover:text-orange-500">
+                  {word}
+                </span>
+                ,
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -1,16 +1,17 @@
 import App from "./App.tsx";
-import Irregular from "./pages/Irregular.tsx";
-import Home from "./pages/Home.tsx";
-import Plural from "./pages/Plural.tsx";
-import Palindromes from "./pages/Palindromes.tsx";
-import Numerals from "./pages/Numerals.tsx";
-import WordSelection from "./pages/WordSelection.tsx";
-import BulkTranslation from "./pages/BulkTranslation.tsx";
-import FrequencyList from "./pages/FrequencyList.tsx";
-import SpacedRepetition from "./pages/SpacedRepetition.tsx";
-import Reviews from "./pages/Reviews.tsx";
+import Irregular from "./pages/Menu/Irregular.tsx";
+import Home from "./pages/Menu/Home.tsx";
+import Plural from "./pages/Menu/Plural.tsx";
+import Palindromes from "./pages/Menu/Palindromes.tsx";
+import Numerals from "./pages/Menu/Numerals.tsx";
+import WordSelection from "./pages/Menu/WordSelection.tsx";
+import BulkTranslation from "./pages/Menu/BulkTranslation.tsx";
+import FrequencyList from "./pages/Menu/FrequencyList.tsx";
+import SpacedRepetition from "./pages/Menu/SpacedRepetition.tsx";
+import Reviews from "./pages/Menu/Reviews.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import List from "./pages/List.tsx";
+import WordDetail from "./pages/WordDetail.tsx";
 
 const routes = [
   {
@@ -58,6 +59,10 @@ const routes = [
       {
         path: "list/:letter",
         element: <List />,
+      },
+      {
+        path: "en/:word",
+        element: <WordDetail />,
       },
     ],
   },
