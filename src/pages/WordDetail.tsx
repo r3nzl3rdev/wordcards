@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { wordDetails } from "../hardcode/hardcode";
-import Button from "../components/Button";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
