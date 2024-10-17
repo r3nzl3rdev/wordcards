@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="py-8 px-4">
+      <div className="p-4 md:p-8">
         <Outlet />
       </div>
     </>

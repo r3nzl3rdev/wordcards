@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           {wordsList.map((word, index) => {
             return (
               <Link key={index} to={`en/${word}`}>
-                <span className="text-blue-500 hover:text-orange-500">
+                <span className="text-lg text-blue-500 hover:text-orange-500">
                   {word}
                 </span>
                 ,

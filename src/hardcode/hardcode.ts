@@ -118,3 +118,95 @@ export const wordsList = [
   "world",
   "year",
 ];
+
+export const wordDetails = {
+  title: "air",
+  transcription: "æə",
+  typeEn: "noun",
+  typeUz: "ot",
+  plural: "airs",
+  synonymList: [
+    "atmosphere",
+    "aeroplane",
+    "aerosphere",
+    "aether",
+    "aircraft",
+    "airwaves",
+    "ambiance",
+    "aura",
+    "aviation",
+    "broadcast",
+    "craft",
+    "ester",
+    "ether",
+    "jet",
+    "midair",
+  ],
+  definitions: [
+    {
+      meaning: "havo",
+      examples: [
+        {
+          phrase: "air conditioning system",
+          translation: "havo konditsionerlash tizimi",
+        },
+        {
+          phrase: "relative air humidity",
+          translation: "havo namligining nisbati",
+        },
+        {
+          phrase: "ambient air temperature",
+          translation: "atrof muhit havo harorati",
+        },
+        {
+          phrase: "atmospheric air pollution",
+          translation: "atmosfera havosining ifloslanishi",
+        },
+        {
+          phrase: "compressed air consumption",
+          translation: "siqilgan havoni iste'mol qilish",
+        },
+      ],
+    },
+    {
+      meaning: "efir",
+      examples: [{ phrase: "evening air", translation: "kechki efir" }],
+    },
+  ],
+  usageFrequency: 443,
+  exampleSentences: [
+    {
+      sentence: "Without air and water, nothing could live.",
+      translation: "Havo va suvsiz hech narsa yashay olmaydi.",
+    },
+    {
+      sentence: "The air felt a little cold.",
+      translation: "Havo biroz sovuq edi.",
+    },
+    {
+      sentence: "Flowers and trees need clean air and fresh water.",
+      translation: "Gullar va daraxtlarga toza havo va yangi suv kerak.",
+    },
+    {
+      sentence: "I put on an air of interest.",
+      translation: "Men qiziqish ko'rsatdim.",
+    },
+    {
+      sentence: "It's very warm. Shall I turn on the air conditioner?",
+      translation: "Juda issiq. Konditsionerni yoqaymi?",
+    },
+    {
+      sentence: "The air conditioner doesn't work.",
+      translation: "Konditsioner ishlamayapti.",
+    },
+    {
+      sentence: "My house doesn't have an air conditioner.",
+      translation: "Mening uyimda konditsioner yo'q.",
+    },
+    {
+      sentence: "The air here is awful.",
+      translation: "Bu yerdagi havo dahshatli.",
+    },
+  ],
+  anagrams: ["ira"],
+};
