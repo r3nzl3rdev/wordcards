@@ -93,7 +93,10 @@ const WordDetail: React.FC = () => {
             {wordDetails.anagrams.map((el, index) => {
               return (
                 <span>
-                  <span key={index} className="text-blue-primary">
+                  <span
+                    key={index}
+                    className="text-blue-primary hover:cursor-pointer hover:text-orange-500"
+                  >
                     {" " + el}
                   </span>
                   {index == wordDetails.anagrams.length - 1 ? "." : ", "}
