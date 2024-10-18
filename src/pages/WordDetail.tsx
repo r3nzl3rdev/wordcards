@@ -35,7 +35,7 @@ const WordDetail: React.FC = () => {
           </div>
           {wordDetails.definitions.map((def, index) => {
             return (
-              <div>
+              <div key={index}>
                 <p className="flex gap-2 text-lg">
                   <span className="font-bold">{def.typeEn}</span>
                   <span>{def.typeUz}</span>
