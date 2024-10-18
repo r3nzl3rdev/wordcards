@@ -7,19 +7,18 @@ const WordDetail: React.FC = () => {
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-4xl font-bold mb-4">{word}</h1>
-      <div className="flex w-full gap-6">
-        <div className="flex flex-col flex-1 gap-4 items-start">
-          <p className="flex w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
-            Sizning &nbsp;
+      <div className="flex flex-wrap w-full gap-6">
+        <div className="flex flex-col lg:flex-1 gap-4 items-start">
+          <p className="w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
+            Sizning
             <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-              shaxsiy hisobingiz
+              &nbsp;shaxsiy hisobingiz&nbsp;
             </span>
-            &nbsp; endi bizning veb-saytimizda mavjud! &nbsp;
-            <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-              {" "}
-              Intervalli takrorlash
+            endi bizning veb-saytimizda mavjud!
+            <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
+              &nbsp;Intervalli takrorlash&nbsp;
             </span>
-            &nbsp; usuli yordamida so'zlarni yodlang!
+            usuli yordamida so'zlarni yodlang!
           </p>
           <button className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white">
             <i className="fa-solid fa-bookmark mr-1"></i>
@@ -85,7 +84,7 @@ const WordDetail: React.FC = () => {
             );
           })}
         </div>
-        <div className="flex flex-col flex-1 gap-4 items-start">
+        <div className="flex flex-col md:flex-1 gap-4 items-start">
           <p className="text-2xl font-bold">Anagrammalar</p>
           <p>
             <span className="font-bold">{word}</span> bilan bir xil harflarni
