@@ -122,29 +122,63 @@ export const wordsList = [
 export const wordDetails = {
   title: "air",
   transcription: "æə",
-  typeEn: "noun",
-  typeUz: "ot",
-  plural: "airs",
-  synonymList: [
-    "atmosphere",
-    "aeroplane",
-    "aerosphere",
-    "aether",
-    "aircraft",
-    "airwaves",
-    "ambiance",
-    "aura",
-    "aviation",
-    "broadcast",
-    "craft",
-    "ester",
-    "ether",
-    "jet",
-    "midair",
-  ],
   definitions: [
     {
+      typeEn: "noun",
+      typeUz: "ot",
       meaning: "havo",
+      plural: "airs",
+      others: [
+        {
+          meaning: "havo",
+          examples: [
+            {
+              phrase: "air conditioning system",
+              translation: "havo konditsionerlash tizimi",
+            },
+            {
+              phrase: "relative air humidity",
+              translation: "havo namligining nisbati",
+            },
+            {
+              phrase: "ambient air temperature",
+              translation: "atrof muhit havo harorati",
+            },
+            {
+              phrase: "atmospheric air pollution",
+              translation: "atmosfera havosining ifloslanishi",
+            },
+            {
+              phrase: "compressed air consumption",
+              translation: "siqilgan havoni iste'mol qilish",
+            },
+          ],
+        },
+        {
+          meaning: "shabada",
+          examples: [{ phrase: "evening air", translation: "kechki shabada" }],
+        },
+        {
+          meaning: "shamol",
+        },
+      ],
+      synonymList: [
+        "atmosphere",
+        "aeroplane",
+        "aerosphere",
+        "aether",
+        "aircraft",
+        "airwaves",
+        "ambiance",
+        "aura",
+        "aviation",
+        "broadcast",
+        "craft",
+        "ester",
+        "ether",
+        "jet",
+        "midair",
+      ],
       examples: [
         {
           phrase: "air conditioning system",
@@ -169,8 +203,62 @@ export const wordDetails = {
       ],
     },
     {
-      meaning: "efir",
-      examples: [{ phrase: "evening air", translation: "kechki efir" }],
+      typeEn: "verb",
+      typeUz: "fe'l",
+      meaning: "efirga uzatmoq, havo berish",
+      others: [
+        {
+          meaning: "efirga uzatmoq",
+          examples: [
+            {
+              phrase: "The show will air tomorrow.",
+              translation: "Ko'rsatuv ertaga efirga uzatiladi.",
+            },
+            {
+              phrase: "They aired the debate live.",
+              translation: "Ular munozarani jonli efirda ko'rsatishdi.",
+            },
+          ],
+        },
+        {
+          meaning: "havo berish, havalandirmoq",
+          examples: [
+            {
+              phrase: "I need to air the room.",
+              translation: "Xonani havalandirishim kerak.",
+            },
+            {
+              phrase: "The laundry was aired outside.",
+              translation: "Kirlar tashqarida havalandirildi.",
+            },
+          ],
+        },
+      ],
+      synonymList: [
+        "broadcast",
+        "ventilate",
+        "expose",
+        "publicize",
+        "announce",
+        "transmit",
+        "disclose",
+        "reveal",
+        "make public",
+      ],
+      examples: [
+        {
+          phrase: "The show will air tomorrow.",
+          translation: "Ko'rsatuv ertaga efirga uzatiladi.",
+        },
+        {
+          phrase: "I need to air the room.",
+          translation: "Xonani havalandirishim kerak.",
+        },
+        {
+          phrase: "They aired the debate live.",
+          translation: "Ular munozarani jonli efirda ko'rsatishdi.",
+        },
+      ],
     },
   ],
   usageFrequency: 443,
@@ -208,5 +296,79 @@ export const wordDetails = {
       translation: "Bu yerdagi havo dahshatli.",
     },
   ],
+  verbForms: {
+    presentSimple: {
+      firstPersonSingular: "I air",
+      secondPersonSingular: "You air",
+      thirdPersonSingular: "He/She/It airs",
+      firstPersonPlural: "We air",
+      secondPersonPlural: "You air",
+      thirdPersonPlural: "They air",
+    },
+    pastSimple: {
+      firstPersonSingular: "I aired",
+      secondPersonSingular: "You aired",
+      thirdPersonSingular: "He/She/It aired",
+      firstPersonPlural: "We aired",
+      secondPersonPlural: "You aired",
+      thirdPersonPlural: "They aired",
+    },
+    futureSimple: {
+      firstPersonSingular: "I will air",
+      secondPersonSingular: "You will air",
+      thirdPersonSingular: "He/She/It will air",
+      firstPersonPlural: "We will air",
+      secondPersonPlural: "You will air",
+      thirdPersonPlural: "They will air",
+    },
+    presentContinuous: {
+      firstPersonSingular: "I am airing",
+      secondPersonSingular: "You are airing",
+      thirdPersonSingular: "He/She/It is airing",
+      firstPersonPlural: "We are airing",
+      secondPersonPlural: "You are airing",
+      thirdPersonPlural: "They are airing",
+    },
+    pastContinuous: {
+      firstPersonSingular: "I was airing",
+      secondPersonSingular: "You were airing",
+      thirdPersonSingular: "He/She/It was airing",
+      firstPersonPlural: "We were airing",
+      secondPersonPlural: "You were airing",
+      thirdPersonPlural: "They were airing",
+    },
+    futureContinuous: {
+      firstPersonSingular: "I will be airing",
+      secondPersonSingular: "You will be airing",
+      thirdPersonSingular: "He/She/It will be airing",
+      firstPersonPlural: "We will be airing",
+      secondPersonPlural: "You will be airing",
+      thirdPersonPlural: "They will be airing",
+    },
+    presentPerfect: {
+      firstPersonSingular: "I have aired",
+      secondPersonSingular: "You have aired",
+      thirdPersonSingular: "He/She/It has aired",
+      firstPersonPlural: "We have aired",
+      secondPersonPlural: "You have aired",
+      thirdPersonPlural: "They have aired",
+    },
+    pastPerfect: {
+      firstPersonSingular: "I had aired",
+      secondPersonSingular: "You had aired",
+      thirdPersonSingular: "He/She/It had aired",
+      firstPersonPlural: "We had aired",
+      secondPersonPlural: "You had aired",
+      thirdPersonPlural: "They had aired",
+    },
+    futurePerfect: {
+      firstPersonSingular: "I will have aired",
+      secondPersonSingular: "You will have aired",
+      thirdPersonSingular: "He/She/It will have aired",
+      firstPersonPlural: "We will have aired",
+      secondPersonPlural: "You will have aired",
+      thirdPersonPlural: "They will have aired",
+    },
+  },
   anagrams: ["ira"],
 };
