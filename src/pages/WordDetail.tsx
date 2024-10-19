@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { wordDetails } from "../hardcode/hardcode";
+import TensesTable from "../components/TensesTable";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -91,11 +92,8 @@ const WordDetail: React.FC = () => {
             o'z ichiga olgan so'zlar:
             {wordDetails.anagrams.map((el, index) => {
               return (
-                <span>
-                  <span
-                    key={index}
-                    className="text-blue-primary hover:cursor-pointer hover:text-orange-500"
-                  >
+                <span key={index}>
+                  <span className="text-blue-primary hover:cursor-pointer hover:text-orange-500">
                     {" " + el}
                   </span>
                   {index == wordDetails.anagrams.length - 1 ? "." : ", "}
@@ -122,6 +120,7 @@ const WordDetail: React.FC = () => {
           </button>
         </div>
       </div>
+      <TensesTable tenseList={wordDetails.verbforms} />
     </div>
   );
 };

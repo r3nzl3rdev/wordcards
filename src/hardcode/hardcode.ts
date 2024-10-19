@@ -203,20 +203,20 @@ export const wordDetails = {
       ],
     },
     {
-      typeEn: "verb",
-      typeUz: "fe'l",
+      typeen: "verb",
+      typeuz: "fe'l",
       meaning: "efirga uzatmoq, havo berish",
       others: [
         {
           meaning: "efirga uzatmoq",
           examples: [
             {
-              phrase: "The show will air tomorrow.",
-              translation: "Ko'rsatuv ertaga efirga uzatiladi.",
+              phrase: "the show will air tomorrow.",
+              translation: "ko'rsatuv ertaga efirga uzatiladi.",
             },
             {
-              phrase: "They aired the debate live.",
-              translation: "Ular munozarani jonli efirda ko'rsatishdi.",
+              phrase: "they aired the debate live.",
+              translation: "ular munozarani jonli efirda ko'rsatishdi.",
             },
           ],
         },
@@ -224,17 +224,17 @@ export const wordDetails = {
           meaning: "havo berish, havalandirmoq",
           examples: [
             {
-              phrase: "I need to air the room.",
-              translation: "Xonani havalandirishim kerak.",
+              phrase: "i need to air the room.",
+              translation: "xonani havalandirishim kerak.",
             },
             {
-              phrase: "The laundry was aired outside.",
-              translation: "Kirlar tashqarida havalandirildi.",
+              phrase: "the laundry was aired outside.",
+              translation: "kirlar tashqarida havalandirildi.",
             },
           ],
         },
       ],
-      synonymList: [
+      synonymlist: [
         "broadcast",
         "ventilate",
         "expose",
@@ -247,16 +247,16 @@ export const wordDetails = {
       ],
       examples: [
         {
-          phrase: "The show will air tomorrow.",
-          translation: "Ko'rsatuv ertaga efirga uzatiladi.",
+          phrase: "the show will air tomorrow.",
+          translation: "ko'rsatuv ertaga efirga uzatiladi.",
         },
         {
-          phrase: "I need to air the room.",
-          translation: "Xonani havalandirishim kerak.",
+          phrase: "i need to air the room.",
+          translation: "xonani havalandirishim kerak.",
         },
         {
-          phrase: "They aired the debate live.",
-          translation: "Ular munozarani jonli efirda ko'rsatishdi.",
+          phrase: "they aired the debate live.",
+          translation: "ular munozarani jonli efirda ko'rsatishdi.",
         },
       ],
     },
@@ -264,111 +264,208 @@ export const wordDetails = {
   usageFrequency: 443,
   exampleSentences: [
     {
-      sentence: "Without air and water, nothing could live.",
-      translation: "Havo va suvsiz hech narsa yashay olmaydi.",
+      sentence: "without air and water, nothing could live.",
+      translation: "havo va suvsiz hech narsa yashay olmaydi.",
     },
     {
-      sentence: "The air felt a little cold.",
-      translation: "Havo biroz sovuq edi.",
+      sentence: "the air felt a little cold.",
+      translation: "havo biroz sovuq edi.",
     },
     {
-      sentence: "Flowers and trees need clean air and fresh water.",
-      translation: "Gullar va daraxtlarga toza havo va yangi suv kerak.",
+      sentence: "flowers and trees need clean air and fresh water.",
+      translation: "gullar va daraxtlarga toza havo va yangi suv kerak.",
     },
     {
-      sentence: "I put on an air of interest.",
-      translation: "Men qiziqish ko'rsatdim.",
+      sentence: "i put on an air of interest.",
+      translation: "men qiziqish ko'rsatdim.",
     },
     {
-      sentence: "It's very warm. Shall I turn on the air conditioner?",
-      translation: "Juda issiq. Konditsionerni yoqaymi?",
+      sentence: "it's very warm. shall i turn on the air conditioner?",
+      translation: "juda issiq. konditsionerni yoqaymi?",
     },
     {
-      sentence: "The air conditioner doesn't work.",
-      translation: "Konditsioner ishlamayapti.",
+      sentence: "the air conditioner doesn't work.",
+      translation: "konditsioner ishlamayapti.",
     },
     {
-      sentence: "My house doesn't have an air conditioner.",
-      translation: "Mening uyimda konditsioner yo'q.",
+      sentence: "my house doesn't have an air conditioner.",
+      translation: "mening uyimda konditsioner yo'q.",
     },
     {
-      sentence: "The air here is awful.",
-      translation: "Bu yerdagi havo dahshatli.",
+      sentence: "the air here is awful.",
+      translation: "bu yerdagi havo dahshatli.",
     },
   ],
-  verbForms: {
-    presentSimple: {
-      firstPersonSingular: "I air",
-      secondPersonSingular: "You air",
-      thirdPersonSingular: "He/She/It airs",
-      firstPersonPlural: "We air",
-      secondPersonPlural: "You air",
-      thirdPersonPlural: "They air",
+  verbforms: [
+    {
+      tense: "simple",
+      content: [
+        {
+          title: "Present Simple",
+          forms: [
+            {
+              singular: "I air",
+              plural: "We air",
+            },
+            {
+              singular: "You air",
+              plural: "You air",
+            },
+            {
+              singular: "He/She/It airs",
+              plural: "They air",
+            },
+          ],
+        },
+        {
+          title: "Past Simple",
+          forms: [
+            {
+              singular: "I aired",
+              plural: "We aired",
+            },
+            {
+              singular: "You aired",
+              plural: "You aired",
+            },
+            {
+              singular: "He/She/It aired",
+              plural: "They aired",
+            },
+          ],
+        },
+        {
+          title: "Future Simple",
+          forms: [
+            {
+              singular: "I will air",
+              plural: "We will air",
+            },
+            {
+              singular: "You will air",
+              plural: "You will air",
+            },
+            {
+              singular: "He/She/It will air",
+              plural: "They will air",
+            },
+          ],
+        },
+      ],
     },
-    pastSimple: {
-      firstPersonSingular: "I aired",
-      secondPersonSingular: "You aired",
-      thirdPersonSingular: "He/She/It aired",
-      firstPersonPlural: "We aired",
-      secondPersonPlural: "You aired",
-      thirdPersonPlural: "They aired",
+    {
+      tense: "continuous",
+      content: [
+        {
+          title: "Present Continuous",
+          forms: [
+            {
+              singular: "I am airing",
+              plural: "We are airing",
+            },
+            {
+              singular: "You are airing",
+              plural: "You are airing",
+            },
+            {
+              singular: "He/She/It is airing",
+              plural: "They are airing",
+            },
+          ],
+        },
+        {
+          title: "Past Continuous",
+          forms: [
+            {
+              singular: "I was airing",
+              plural: "We were airing",
+            },
+            {
+              singular: "You were airing",
+              plural: "You were airing",
+            },
+            {
+              singular: "He/She/It was airing",
+              plural: "They were airing",
+            },
+          ],
+        },
+        {
+          title: "Future Continuous",
+          forms: [
+            {
+              singular: "I will be airing",
+              plural: "We will be airing",
+            },
+            {
+              singular: "You will be airing",
+              plural: "You will be airing",
+            },
+            {
+              singular: "He/She/It will be airing",
+              plural: "They will be airing",
+            },
+          ],
+        },
+      ],
     },
-    futureSimple: {
-      firstPersonSingular: "I will air",
-      secondPersonSingular: "You will air",
-      thirdPersonSingular: "He/She/It will air",
-      firstPersonPlural: "We will air",
-      secondPersonPlural: "You will air",
-      thirdPersonPlural: "They will air",
+    {
+      tense: "perfect",
+      content: [
+        {
+          title: "Present Perfect",
+          forms: [
+            {
+              singular: "I have aired",
+              plural: "We have aired",
+            },
+            {
+              singular: "You have aired",
+              plural: "You have aired",
+            },
+            {
+              singular: "He/She/It has aired",
+              plural: "They have aired",
+            },
+          ],
+        },
+        {
+          title: "Past Perfect",
+          forms: [
+            {
+              singular: "I had aired",
+              plural: "We had aired",
+            },
+            {
+              singular: "You had aired",
+              plural: "You had aired",
+            },
+            {
+              singular: "He/She/It had aired",
+              plural: "They had aired",
+            },
+          ],
+        },
+        {
+          title: "Future Perfect",
+          forms: [
+            {
+              singular: "I will have aired",
+              plural: "We will have aired",
+            },
+            {
+              singular: "You will have aired",
+              plural: "You will have aired",
+            },
+            {
+              singular: "He/She/It will have aired",
+              plural: "They will have aired",
+            },
+          ],
+        },
+      ],
     },
-    presentContinuous: {
-      firstPersonSingular: "I am airing",
-      secondPersonSingular: "You are airing",
-      thirdPersonSingular: "He/She/It is airing",
-      firstPersonPlural: "We are airing",
-      secondPersonPlural: "You are airing",
-      thirdPersonPlural: "They are airing",
-    },
-    pastContinuous: {
-      firstPersonSingular: "I was airing",
-      secondPersonSingular: "You were airing",
-      thirdPersonSingular: "He/She/It was airing",
-      firstPersonPlural: "We were airing",
-      secondPersonPlural: "You were airing",
-      thirdPersonPlural: "They were airing",
-    },
-    futureContinuous: {
-      firstPersonSingular: "I will be airing",
-      secondPersonSingular: "You will be airing",
-      thirdPersonSingular: "He/She/It will be airing",
-      firstPersonPlural: "We will be airing",
-      secondPersonPlural: "You will be airing",
-      thirdPersonPlural: "They will be airing",
-    },
-    presentPerfect: {
-      firstPersonSingular: "I have aired",
-      secondPersonSingular: "You have aired",
-      thirdPersonSingular: "He/She/It has aired",
-      firstPersonPlural: "We have aired",
-      secondPersonPlural: "You have aired",
-      thirdPersonPlural: "They have aired",
-    },
-    pastPerfect: {
-      firstPersonSingular: "I had aired",
-      secondPersonSingular: "You had aired",
-      thirdPersonSingular: "He/She/It had aired",
-      firstPersonPlural: "We had aired",
-      secondPersonPlural: "You had aired",
-      thirdPersonPlural: "They had aired",
-    },
-    futurePerfect: {
-      firstPersonSingular: "I will have aired",
-      secondPersonSingular: "You will have aired",
-      thirdPersonSingular: "He/She/It will have aired",
-      firstPersonPlural: "We will have aired",
-      secondPersonPlural: "You will have aired",
-      thirdPersonPlural: "They will have aired",
-    },
-  },
+  ],
+
   anagrams: ["ira"],
 };
