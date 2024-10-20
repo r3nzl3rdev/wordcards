@@ -24,7 +24,7 @@ const IntervalRepitition: React.FC = () => {
       </p>
       <img
         className="w-[500px]"
-        src="public/leitner-system.png"
+        src="/public/leitner-system.png"
         alt="leitner system"
       />
       <p>
