@@ -607,3 +607,66 @@ export const comments = [
     text: "Yangi fe'llarni tezroq o'rganish uchun juda yaxshi usul!",
   },
 ];
+
+export const irregularNouns = [
+  {
+    en: { singular: "basis", plural: "bases" },
+    translation: { singular: "baza", plural: "bazalar" },
+  },
+  {
+    en: { singular: "cactus", plural: "cacti" },
+    translation: { singular: "kaktus", plural: "kaktuslar" },
+  },
+  {
+    en: { singular: "child", plural: "children" },
+    translation: { singular: "bola", plural: "bolalar" },
+  },
+  {
+    en: { singular: "crisis", plural: "crises" },
+    translation: { singular: "inqiroz", plural: "inqirozlar" },
+  },
+  {
+    en: { singular: "datum", plural: "data" },
+    translation: { singular: "ma'lumot", plural: "ma'lumotlar" },
+  },
+  {
+    en: { singular: "foot", plural: "feet" },
+    translation: { singular: "oyoq", plural: "oyoqlar" },
+  },
+  {
+    en: { singular: "formula", plural: "formulae" },
+    translation: { singular: "formula", plural: "formulalar" },
+  },
+  {
+    en: { singular: "goose", plural: "geese" },
+    translation: { singular: "g'oz", plural: "g'ozlar" },
+  },
+  {
+    en: { singular: "index", plural: "indices" },
+    translation: { singular: "indeks", plural: "indekslar" },
+  },
+  {
+    en: { singular: "leaf", plural: "leaves" },
+    translation: { singular: "barg", plural: "barglar" },
+  },
+  {
+    en: { singular: "louse", plural: "lice" },
+    translation: { singular: "bit", plural: "bitlar" },
+  },
+  {
+    en: { singular: "man", plural: "men" },
+    translation: { singular: "erkak", plural: "erkaklar" },
+  },
+  {
+    en: { singular: "mouse", plural: "mice" },
+    translation: { singular: "sichqon", plural: "sichqonlar" },
+  },
+  {
+    en: { singular: "ox", plural: "oxen" },
+    translation: { singular: "ho'kiz", plural: "ho'kizlar" },
+  },
+  {
+    en: { singular: "person", plural: "people" },
+    translation: { singular: "inson", plural: "odamlar" },
+  },
+];
