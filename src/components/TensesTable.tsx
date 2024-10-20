@@ -27,7 +27,7 @@ const TensesTable: React.FC<TensesTableProps> = ({ tenseList }) => {
         return (
           <div
             key={index}
-            className="grid grid-cols-3 divide-x divide-gray-300 border border-gray-300 text-md"
+            className="grid grid-cols-1 md:grid-cols-3 divide-x divide-gray-300 border border-gray-300 text-md"
           >
             {tense.content.map((el, index) => {
               return (
