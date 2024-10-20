@@ -12,6 +12,7 @@ import Reviews from "./pages/Menu/Reviews.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import List from "./pages/List.tsx";
 import WordDetail from "./pages/WordDetail.tsx";
+import IntervalRepitition from "./pages/IntervalRepitition.tsx";
 
 const routes = [
   {
@@ -55,6 +56,10 @@ const routes = [
       {
         path: "reviews",
         element: <Reviews />,
+      },
+      {
+        path: "interval-repetition",
+        element: <IntervalRepitition />,
       },
       {
         path: "list/:letter",

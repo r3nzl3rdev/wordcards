@@ -18,9 +18,11 @@ const WordDetail: React.FC = () => {
               &nbsp;shaxsiy hisobingiz&nbsp;
             </span>
             endi bizning veb-saytimizda mavjud!
-            <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-              &nbsp;Intervalli takrorlash&nbsp;
-            </span>
+            <Link to="/interval-repetition">
+              <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
+                &nbsp;Intervalli takrorlash&nbsp;
+              </span>
+            </Link>
             usuli yordamida so'zlarni yodlang!
           </p>
           <button className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white">
