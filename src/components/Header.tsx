@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         <Input placeholder="So'z qidirish..." />
       </div>
       <Link to="/login">
-        <Button className="text-lg text-white active:hover:text-black active:hover:bg-gray-300">
+        <Button className="text-lg h-full text-white active:text-black active:bg-gray-300 lg:hover:text-black lg:hover:bg-gray-300">
           <p>Kirish</p>
         </Button>
       </Link>
