@@ -8,7 +8,7 @@ const Irregular: React.FC = () => {
   return (
     <div className="flex w-full lg:justify-center">
       <div className="flex flex-col gap-4 items-start self-center w-fit overflow-auto no-scrollbar pb-2 lg:p-2">
-        <div className="flex flex-col gap-4 items-left w-full sticky left-4">
+        <div className="flex flex-col gap-4 items-left w-full sticky left-0">
           <h1 className="text-4xl font-bold">Noto'g'ri fe'llar</h1>
           <p>
             Ingliz tilidagi eng mashhur tartibsiz fe'llarni quyidagi jadvalda
@@ -58,7 +58,7 @@ const Irregular: React.FC = () => {
             );
           })}
         </div>
-        <div className="w-[98%] lg:w-full max-w-[973px] sticky left-4 flex flex-col justify-center gap-4 ">
+        <div className="w-[98%] lg:w-full max-w-[973px] sticky left-0 flex flex-col justify-center gap-4 ">
           <CommentList commentList={comments} />
           <AddCommentBox />
         </div>
