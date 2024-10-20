@@ -3,6 +3,7 @@ import Input from "./Input";
 import Menu from "./Menu";
 import { menuOptions } from "../config/menuConfig";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -11,9 +12,11 @@ const Header: React.FC = () => {
         <Menu options={menuOptions} />
         <Input placeholder="So'z qidirish..." />
       </div>
-      <Button className="text-lg text-white hover:text-black hover:bg-gray-300">
-        <p>Kirish</p>
-      </Button>
+      <Link to="/login">
+        <Button className="text-lg text-white hover:text-black hover:bg-gray-300">
+          <p>Kirish</p>
+        </Button>
+      </Link>
     </div>
   );
 };

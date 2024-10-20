@@ -14,9 +14,11 @@ const WordDetail: React.FC = () => {
         <div className="flex flex-col lg:flex-1 gap-4 items-start">
           <p className="w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
             Sizning
-            <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-              &nbsp;shaxsiy hisobingiz&nbsp;
-            </span>
+            <Link to="/login">
+              <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
+                &nbsp;shaxsiy hisobingiz&nbsp;
+              </span>
+            </Link>
             endi bizning veb-saytimizda mavjud!
             <Link to="/interval-repetition">
               <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">

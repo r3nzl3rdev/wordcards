@@ -13,6 +13,7 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import List from "./pages/List.tsx";
 import WordDetail from "./pages/WordDetail.tsx";
 import IntervalRepitition from "./pages/IntervalRepitition.tsx";
+import Login from "./pages/Login.tsx";
 
 const routes = [
   {
@@ -60,6 +61,10 @@ const routes = [
       {
         path: "interval-repetition",
         element: <IntervalRepitition />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         path: "list/:letter",
