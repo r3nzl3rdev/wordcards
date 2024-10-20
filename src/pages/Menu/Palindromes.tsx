@@ -60,7 +60,7 @@ const Palindromes: React.FC = () => {
             return (
               <p
                 key={index}
-                className={`flex gap-2 w-fill  p-2 border-b border-gray-200 border-x hover:bg-gray-200 ${index == palindromeList.length - 1 ? "rounded-b-md " : ""} ${index % 2 == 0 ? "bg-gray-100" : ""}`}
+                className={`flex gap-2 w-fill  p-2 border-b border-gray-200 border-x hover:bg-gray-200 ${index == uzPalindromeList.length - 1 ? "rounded-b-md " : ""} ${index % 2 == 0 ? "bg-gray-100" : ""}`}
               >
                 {word}
               </p>
