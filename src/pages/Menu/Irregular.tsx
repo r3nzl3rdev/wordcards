@@ -7,7 +7,7 @@ import AddCommentBox from "../../components/AddCommentBox";
 const Irregular: React.FC = () => {
   return (
     <div className="flex w-full lg:justify-center">
-      <div className="flex flex-col gap-4 items-start self-center w-fit overflow-auto no-scrollbar pb-2">
+      <div className="flex flex-col gap-4 items-start self-center w-fit overflow-auto no-scrollbar p-2">
         <div className="flex flex-col gap-4 items-left w-full sticky left-1">
           <h1 className="text-4xl font-bold">Noto'g'ri fe'llar</h1>
           <p>
