@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="p-4 md:p-8">
+      <div className="p-2 md:p-8 mt-12">
         <Outlet />
       </div>
     </>

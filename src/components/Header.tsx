@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
-    <div className="flex w-full justify-between bg-green-primary">
+    <div className="flex w-full justify-between bg-green-primary fixed top-0 z-10">
       <div className="flex">
         <Menu options={menuOptions} />
         <Input placeholder="So'z qidirish..." />

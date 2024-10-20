@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { wordDetails } from "../hardcode/hardcode";
 import TensesTable from "../components/TensesTable";
-import Input from "../components/Input";
 import Button from "../components/Button";
+import AddCommentBox from "../components/AddCommentBox";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -138,17 +138,7 @@ const WordDetail: React.FC = () => {
           sharh qoldirshingiz mumkin. Sharh faqat o'zbek yoki ingliz tillarida
           bo'lishi kerak.
         </p>
-        <div className="bg-gray-100 p-4 flex flex-col gap-4 rounded-md shadow-md shadow-gray-400">
-          <p className="text-xl">Sharh qo'shish</p>
-          <Input id="username" label="Ism yoki taxallus:" />
-          <div>
-            <p>Sharh:</p>
-            <textarea className="border border-gray-300 w-full min-h-32"></textarea>
-          </div>
-          <Button className="text-md text-white bg-blue-500 hover:bg-blue-400 w-fit rounded-md">
-            Qo'shish
-          </Button>
-        </div>
+        <AddCommentBox />
       </div>
     </div>
   );

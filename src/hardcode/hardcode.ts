@@ -469,3 +469,141 @@ export const wordDetails = {
 
   anagrams: ["ira"],
 };
+
+export const irregularVerbs = [
+  {
+    baseForm: "arise",
+    pastSimple: "arose",
+    pastParticiple: "arisen",
+    meaning: "paydo bo'lmoq",
+  },
+  {
+    baseForm: "awake",
+    pastSimple: "awoke",
+    pastParticiple: "awoken",
+    meaning: "uyg'onmoq",
+  },
+  {
+    baseForm: "beat",
+    pastSimple: "beat",
+    pastParticiple: "beaten",
+    meaning: "urmoq",
+  },
+  {
+    baseForm: "become",
+    pastSimple: "became",
+    pastParticiple: "become",
+    meaning: "bo'lmoq",
+  },
+  {
+    baseForm: "befall",
+    pastSimple: "befell",
+    pastParticiple: "befallen",
+    meaning: "sodir bo'lmoq",
+  },
+  {
+    baseForm: "begin",
+    pastSimple: "began",
+    pastParticiple: "begun",
+    meaning: "boshlamoq",
+  },
+  {
+    baseForm: "behold",
+    pastSimple: "beheld",
+    pastParticiple: "beheld",
+    meaning: "ko'rmoq, kuzatmoq",
+  },
+  {
+    baseForm: "beset",
+    pastSimple: "beset",
+    pastParticiple: "beset",
+    meaning: "qamalmoq, o'rab olmoq",
+  },
+  {
+    baseForm: "bind",
+    pastSimple: "bound",
+    pastParticiple: "bound",
+    meaning: "bog'lamoq",
+  },
+  {
+    baseForm: "bleed",
+    pastSimple: "bled",
+    pastParticiple: "bled",
+    meaning: "qonamoq",
+  },
+  {
+    baseForm: "blow",
+    pastSimple: "blew",
+    pastParticiple: "blown",
+    meaning: "puflamoq, esmoq",
+  },
+  {
+    baseForm: "break",
+    pastSimple: "broke",
+    pastParticiple: "broken",
+    meaning: "sindirmoq",
+  },
+  {
+    baseForm: "breed",
+    pastSimple: "bred",
+    pastParticiple: "bred",
+    meaning: "ko'paytirmoq",
+  },
+  {
+    baseForm: "bring",
+    pastSimple: "brought",
+    pastParticiple: "brought",
+    meaning: "olib kelmoq",
+  },
+  {
+    baseForm: "broadcast",
+    pastSimple: "broadcast",
+    pastParticiple: "broadcast",
+    meaning: "efirga uzatmoq",
+  },
+];
+
+export const comments = [
+  {
+    date: "30.08.2022",
+    time: "22:19",
+    user: "Olimjon",
+    text: "Ajoyib ro'yxat, fe'llarni o'rganishda katta yordam beradi!",
+  },
+  {
+    date: "01.09.2022",
+    time: "14:35",
+    user: "Dilnoza",
+    text: "Bu ro'yxat juda foydali ekan, minnatdorchilik bildiraman!",
+  },
+  {
+    date: "05.09.2022",
+    time: "09:45",
+    user: "Shahzoda",
+    text: "Rahmat, ushbu ro'yxat fe'llarni mustahkamlashga yordam beradi.",
+  },
+  {
+    date: "10.09.2022",
+    time: "17:20",
+    user: "Azizbek",
+    text: "Fe'llarni o'rganishda eng yaxshi resurslardan biri!",
+  },
+  {
+    date: "12.09.2022",
+    time: "11:15",
+    user: "Madinabonu",
+    text: "O'qituvchilar uchun ham, o'quvchilar uchun ham foydali manba.",
+  },
+  {
+    date: "15.09.2022",
+    time: "16:00",
+    user: "Sardor",
+    text: "Men uchun juda foydali ro'yxat, rahmat!",
+  },
+  {
+    date: "18.09.2022",
+    time: "10:30",
+    user: "Malika",
+    text: "Yangi fe'llarni tezroq o'rganish uchun juda yaxshi usul!",
+  },
+];
