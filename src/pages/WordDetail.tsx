@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { wordDetails } from "../hardcode/hardcode";
 import TensesTable from "../components/TensesTable";
+import Input from "../components/Input";
+import Button from "../components/Button";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -115,13 +117,35 @@ const WordDetail: React.FC = () => {
               </div>
             );
           })}
-          <button className="py-2 px-4 bg-green-500 hover:bg-green-400 rounded-md text-white">
+          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white">
             Namuna qo'shish
-          </button>
+          </Button>
         </div>
       </div>
       <TensesTable tenseList={wordDetails.verbforms} />
-      <div className="flex w-full h-1 bg-gray-300"></div>
+
+      {/* custom hr: just a long line */}
+      <div className="flex w-full h-[1px] bg-gray-300"></div>
+
+      <div className="flex flex-col items-left self-center text-left gap-4">
+        <h1 className="font-bold text-2xl text-left">Sharhlar</h1>
+        <p>
+          Bu yerda <span className="font-bold">{word}</span> so'ziga tegishli
+          sharh qoldirshingiz mumkin. Sharh faqat o'zbek yoki ingliz tillarida
+          bo'lishi kerak.
+        </p>
+        <div className="bg-gray-100 p-4 flex flex-col gap-4 rounded-md shadow-md shadow-gray-400">
+          <p className="text-xl">Sharh qo'shish</p>
+          <Input id="username" label="Ism yoki taxallus:" />
+          <div>
+            <p>Sharh:</p>
+            <textarea className="border border-gray-300 w-full min-h-32"></textarea>
+          </div>
+          <Button className="text-md text-white bg-blue-500 hover:bg-blue-400 w-fit rounded-md">
+            Qo'shish
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -11,11 +11,7 @@ const Header: React.FC = () => {
         <Menu options={menuOptions} />
         <Input placeholder="So'z qidirish..." />
       </div>
-      <Button
-        className="text-lg text-white hover:text-black hover:bg-gray-300"
-        id="teginma"
-        key={12}
-      >
+      <Button className="text-lg text-white hover:text-black hover:bg-gray-300">
         <p>Kirish</p>
       </Button>
     </div>
