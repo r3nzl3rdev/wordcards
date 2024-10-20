@@ -9,7 +9,7 @@ const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
   return (
     <div className="flex flex-col gap-5">
-      <h1 className="text-4xl font-bold mb-4">{word}</h1>
+      <h1 className="text-2xl md:text-4xl font-bold mb-4">{word}</h1>
       <div className="flex flex-wrap w-full gap-6">
         <div className="flex flex-col lg:flex-1 gap-4 items-start">
           <p className="w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
@@ -129,7 +129,7 @@ const WordDetail: React.FC = () => {
 
       <TensesTable tenseList={wordDetails.verbforms} />
 
-      <div className="mt-12 flex flex-col items-left self-center text-left gap-4">
+      <div className="mt-6 lg:mt-12 flex flex-col items-left self-center text-left gap-4">
         <h1 className="font-bold text-2xl text-left">Sharhlar</h1>
         <p>
           Bu yerda <span className="font-bold">{word}</span> so'ziga tegishli

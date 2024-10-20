@@ -734,3 +734,22 @@ export const englishNumbers = [
   { number: 1000000, numeral: "million", translation: "million" },
   { number: 1000000000, numeral: "billion", translation: "milliard" },
 ];
+
+export const mostUsedWords = [
+  { word: "the", frequency: 83622, translation: "bu" },
+  { word: "of", frequency: 45836, translation: "ning" },
+  { word: "and", frequency: 34617, translation: "va" },
+  { word: "in", frequency: 30863, translation: "ichida" },
+  { word: "to", frequency: 23341, translation: "ga" },
+  { word: "was", frequency: 12123, translation: "edi" },
+  { word: "is", frequency: 10458, translation: "bu" },
+  { word: "for", frequency: 9747, translation: "uchun" },
+  { word: "as", frequency: 9460, translation: "sifatida" },
+  { word: "by", frequency: 8459, translation: "tomonidan" },
+  { word: "on", frequency: 8181, translation: "ustida" },
+  { word: "with", frequency: 8090, translation: "bilan" },
+  { word: "that", frequency: 6798, translation: "bu" },
+  { word: "from", frequency: 6427, translation: "dan" },
+  { word: "at", frequency: 5391, translation: "da" },
+  { word: "were", frequency: 5099, translation: "edi" },
+];

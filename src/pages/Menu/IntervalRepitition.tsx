@@ -3,7 +3,9 @@ import React from "react";
 const IntervalRepitition: React.FC = () => {
   return (
     <div className="flex flex-col gap-4 w-full max-w-[936px] m-auto">
-      <h1 className="text-4xl font-bold">Intervalli takrorlash usuli</h1>
+      <h1 className="text-2xl md:text-4xl font-bold">
+        Intervalli takrorlash usuli
+      </h1>
       <p>
         Intervalli takrorlash (inglizcha:{" "}
         <span className="font-bold">spaced repetition</span>) samarali yod

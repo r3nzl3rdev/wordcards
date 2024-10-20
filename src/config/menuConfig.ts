@@ -7,6 +7,6 @@ export const menuOptions = [
   { title: "Word Selection", route: "/word-selection" },
   { title: "Bulk Translation", route: "/bulk-translation" },
   { title: "Frequency List", route: "/frequency-list" },
-  { title: "Spaced Repetition Method", route: "/spaced-repetition" },
+  { title: "Interval Repetition Method", route: "/interval-repetition" },
   { title: "Reviews", route: "/reviews" },
 ];

@@ -7,12 +7,11 @@ import Numerals from "./pages/Menu/Numerals.tsx";
 import WordSelection from "./pages/Menu/WordSelection.tsx";
 import BulkTranslation from "./pages/Menu/BulkTranslation.tsx";
 import FrequencyList from "./pages/Menu/FrequencyList.tsx";
-import SpacedRepetition from "./pages/Menu/SpacedRepetition.tsx";
 import Reviews from "./pages/Menu/Reviews.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import List from "./pages/List.tsx";
 import WordDetail from "./pages/WordDetail.tsx";
-import IntervalRepitition from "./pages/IntervalRepitition.tsx";
+import IntervalRepitition from "./pages/Menu/IntervalRepitition.tsx";
 import Login from "./pages/Login.tsx";
 
 const routes = [
@@ -49,10 +48,6 @@ const routes = [
       {
         path: "frequency-list",
         element: <FrequencyList />,
-      },
-      {
-        path: "spaced-repetition",
-        element: <SpacedRepetition />,
       },
       {
         path: "reviews",

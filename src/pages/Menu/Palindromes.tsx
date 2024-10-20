@@ -13,7 +13,7 @@ const Palindromes: React.FC = () => {
     <div className="flex w-full lg:justify-center">
       <div className="flex flex-col gap-4 items-start self-center w-fit overflow-auto no-scrollbar pb-2 lg:p-2">
         <div className="flex flex-col gap-4 items-left w-full sticky left-1 max-w-[973px]">
-          <h1 className="text-4xl font-bold">Palindrom so'zlar</h1>
+          <h1 className="text-2xl md:text-4xl font-bold">Palindrom so'zlar</h1>
           <p>
             <b>Palindromlar</b> - bu chapdan o'ngga va o'ngdan chapga bir xil
             o'qiladigan so'zlar.
@@ -67,7 +67,7 @@ const Palindromes: React.FC = () => {
             );
           })}
         </div>
-        <div className="mt-12 w-[98%] lg:w-full max-w-[973px] sticky left-1 flex flex-col justify-center gap-4 ">
+        <div className="mt-6 lg:mt-12 w-[98%] lg:w-full max-w-[973px] sticky left-1 flex flex-col justify-center gap-4 ">
           <CommentList commentList={comments} />
           <AddCommentBox />
         </div>
