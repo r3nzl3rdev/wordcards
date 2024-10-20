@@ -20,7 +20,7 @@ const IntervalRepitition: React.FC = () => {
       <p>
         Ushbu tizim <span className="font-bold">intervalli takrorlash </span>
         metodining oddiy qo'llanilishi bo'lib, bu yerda kartalar o'sib borish
-        tartibida takrorlanadi
+        tartibida takrorlanadi:
       </p>
       <img
         className="w-[500px]"

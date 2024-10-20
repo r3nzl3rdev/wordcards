@@ -37,7 +37,7 @@ const Plural: React.FC = () => {
             return (
               <div
                 key={index}
-                className={`grid grid-cols-2 p-2 border-b border-gray-200 border-x hover:bg-gray-200 ${index == irregularNouns.length - 1 ? "rounded-b-md " : ""} ${index % 2 == 0 ? "bg-gray-100" : ""}`}
+                className={`grid grid-cols-2 p-2 border-b border-gray-200 border-x lg:hover:bg-gray-200 ${index == irregularNouns.length - 1 ? "rounded-b-md " : ""} ${index % 2 == 0 ? "bg-gray-100" : ""}`}
               >
                 <p className="flex gap-2 w-fill">
                   <Link

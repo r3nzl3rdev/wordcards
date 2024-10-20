@@ -126,12 +126,10 @@ const WordDetail: React.FC = () => {
           </Button>
         </div>
       </div>
+
       <TensesTable tenseList={wordDetails.verbforms} />
 
-      {/* custom hr: just a long line */}
-      <div className="flex w-full h-[1px] bg-gray-300"></div>
-
-      <div className="flex flex-col items-left self-center text-left gap-4">
+      <div className="mt-12 flex flex-col items-left self-center text-left gap-4">
         <h1 className="font-bold text-2xl text-left">Sharhlar</h1>
         <p>
           Bu yerda <span className="font-bold">{word}</span> so'ziga tegishli
