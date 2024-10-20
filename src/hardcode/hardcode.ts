@@ -670,3 +670,32 @@ export const irregularNouns = [
     translation: { singular: "inson", plural: "odamlar" },
   },
 ];
+
+export const palindromeList = [
+  { word: "racecar", translation: "poyga mashinasi" },
+  { word: "madam", translation: "xonim" },
+  { word: "level", translation: "daraja" },
+  { word: "radar", translation: "radar" },
+  { word: "civic", translation: "fuqarolik" },
+  { word: "rotor", translation: "rotor" },
+  { word: "refer", translation: "yo'naltirmoq" },
+  { word: "deified", translation: "ilohiylashtirilgan" },
+  { word: "reviver", translation: "jonlantiruvchi" },
+  { word: "noon", translation: "tush" },
+  { word: "stats", translation: "statistika" },
+  { word: "tenet", translation: "asosiy e'tiqod" },
+  { word: "wow", translation: "qoyil" },
+  { word: "level", translation: "daraja" },
+];
+
+export const uzPalindromeList = [
+  "alla",
+  "ikki",
+  "ko'k",
+  "non",
+  "ikki",
+  "quduq",
+  "arra",
+  "qochoq",
+  "qulluq",
+];
