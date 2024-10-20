@@ -58,7 +58,7 @@ const Irregular: React.FC = () => {
             );
           })}
         </div>
-        <div className="w-[98%] lg:w-full max-w-[973px] sticky left-0 flex flex-col justify-center gap-4 ">
+        <div className="w-[98%] lg:w-full max-w-[973px] sticky left-1 flex flex-col justify-center gap-4 ">
           <CommentList commentList={comments} />
           <AddCommentBox />
         </div>
