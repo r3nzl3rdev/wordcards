@@ -38,7 +38,7 @@ const routes = [
         element: <Numerals />,
       },
       {
-        path: "word-selection",
+        path: "wordle",
         element: <WordSelection />,
       },
       {

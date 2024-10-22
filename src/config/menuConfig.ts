@@ -4,7 +4,7 @@ export const menuOptions = [
   { title: "Plural", route: "/plural" },
   { title: "Palindromes", route: "/palindromes" },
   { title: "Numerals", route: "/numerals" },
-  { title: "Word Selection", route: "/word-selection" },
+  { title: "Word Selection", route: "/wordle" },
   { title: "Bulk Translation", route: "/bulk-translation" },
   { title: "Frequency List", route: "/frequency-list" },
   { title: "Interval Repetition Method", route: "/interval-repetition" },
