@@ -13,13 +13,13 @@ const WordDetail: React.FC = () => {
       <div className="flex flex-wrap w-full gap-6">
         <div className="flex flex-col lg:flex-1 gap-4 items-start">
           <p className="w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
-            Sizning
+            Endi bizning veb-saytimizda
             <Link to="/login">
               <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-                &nbsp;shaxsiy hisobingiz&nbsp;
+                &nbsp;shaxsiy hisob&nbsp;
               </span>
             </Link>
-            endi bizning veb-saytimizda mavjud!
+            ochish imkoniyati bor!
             <Link to="/interval-repetition">
               <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
                 &nbsp;Intervalli takrorlash&nbsp;
@@ -27,10 +27,10 @@ const WordDetail: React.FC = () => {
             </Link>
             usuli yordamida so'zlarni yodlang!
           </p>
-          <button className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white">
+          <Button className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white">
             <i className="fa-solid fa-bookmark mr-1"></i>
             Saqlanganlarga qo'shish
-          </button>
+          </Button>
           <div className="flex gap-2 items-center">
             <p className="text-2xl font-bold text-green-primary">
               [{wordDetails.transcription}]
