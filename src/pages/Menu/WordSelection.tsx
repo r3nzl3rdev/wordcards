@@ -73,7 +73,7 @@ const WordSelection: React.FC = () => {
               className="rounded"
             />
             <div className="flex gap-1">
-              <input type="checkbox" id="isUnique" name="isUnique" checked />
+              <input type="checkbox" id="isUnique" name="isUnique"/>
               <label htmlFor="isUnique">So'zda harflar takrorlanmaydi</label>
             </div>
             <div className="flex gap-4 flex-wrap">
