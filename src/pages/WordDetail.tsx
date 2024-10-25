@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { wordDetails } from "../hardcode/hardcode";
 import TensesTable from "../components/TensesTable";
 import Button from "../components/Button";
 import AddCommentBox from "../components/AddCommentBox";
+import Modal from "../components/Modal";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
+  const [isModalOpen, setModalOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-2xl md:text-4xl font-bold mb-4">{word}</h1>
@@ -27,7 +30,10 @@ const WordDetail: React.FC = () => {
             </Link>
             usuli yordamida so'zlarni yodlang!
           </p>
-          <Button className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white">
+          <Button
+            className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white"
+            onClick={() => setModalOpen(true)}
+          >
             <i className="fa-solid fa-bookmark mr-1"></i>
             Saqlanganlarga qo'shish
           </Button>
@@ -138,6 +144,46 @@ const WordDetail: React.FC = () => {
         </p>
         <AddCommentBox />
       </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Words.uz"
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-lg">Sandiqqa so'z qo'shish </p>
+          <p className="">
+            <b>{word}</b> so'zi qo'shilgandan so'ng, uni{" "}
+            <Link to="/interval-repetition">
+              <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
+                &nbsp;Intervalli takrorlash&nbsp;
+              </span>
+            </Link>
+            usuli yordamida o'rganishni boshlashingiz mumkin.
+          </p>
+          <p>
+            Qo'shish jarayonida so'zning turkumini tanlash imkoniyati ham
+            mavjud.
+          </p>
+          <p>
+            Barcha qo'shilgan so'zlarni o'z shaxsiy hisobingizda ko'rsa bo'ladi.
+          </p>
+          <div className="flex flex-col gap-1">
+            <p>So'z turkumi</p>
+            <select
+              id="languageSelect"
+              className="px-2 lg:px-4 py-3 border bg-gray-100 border-gray-300 rounded-md"
+            >
+              <option value="noun">Ot</option>
+              <option value="adjective">Sifat</option>
+              <option value="verb">Fe'l</option>
+            </select>
+          </div>
+          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit">
+            Qo'shish
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 };

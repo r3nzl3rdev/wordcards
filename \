@@ -203,8 +203,8 @@ export const wordDetails = {
       ],
     },
     {
-      typeEn: "verb",
-      typeUz: "fe'l",
+      typeen: "verb",
+      typeuz: "fe'l",
       meaning: "efirga uzatmoq, havo berish",
       others: [
         {
