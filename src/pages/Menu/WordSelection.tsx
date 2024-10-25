@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import CommentList from "../../components/CommentList";
 import AddCommentBox from "../../components/AddCommentBox";
 import { comments } from "../../hardcode/hardcode";
 import { Link } from "react-router-dom";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import Modal from "../../components/Modal";
 
 const WordSelection: React.FC = () => {
+  const [isAddWordModalOpen, setAddWordModalOpen] = useState(false);
+
   return (
     <div className="flex w-full lg:justify-center">
       <div className="flex flex-col gap-4 items-start self-center w-fit overflow-auto no-scrollbar pb-2 lg:p-2">
@@ -73,7 +76,7 @@ const WordSelection: React.FC = () => {
               className="rounded"
             />
             <div className="flex gap-1">
-              <input type="checkbox" id="isUnique" name="isUnique"/>
+              <input type="checkbox" id="isUnique" name="isUnique" />
               <label htmlFor="isUnique">So'zda harflar takrorlanmaydi</label>
             </div>
             <div className="flex gap-4 flex-wrap">
@@ -85,7 +88,12 @@ const WordSelection: React.FC = () => {
                 <i className="fa-solid fa-xmark"></i>
                 Filterlarni o'chirish
               </Button>
-              <Button className="flex gap-1 py-2 px-4 bg-green-500 hover:bg-blue-400 rounded-md text-white">
+              <Button
+                className="flex gap-1 py-2 px-4 bg-green-500 hover:bg-blue-400 rounded-md text-white"
+                onClick={() => {
+                  setAddWordModalOpen(true);
+                }}
+              >
                 <i className="fa-solid fa-plus"></i>
                 So'z qo'shish
               </Button>
@@ -95,11 +103,38 @@ const WordSelection: React.FC = () => {
 
         <div className="mt-6 lg:mt-12 w-[98%] lg:w-full max-w-[973px] sticky left-1 flex flex-col justify-center gap-4 ">
           <p className="text-xl md:text-2xl font-bold">Sharhlar</p>
-          <p className="mb-6">Bu yerda siz ushbu sahifa haqida sharh qoldirishingiz mumkin.</p>
+          <p className="mb-6">
+            Bu yerda siz ushbu sahifa haqida sharh qoldirishingiz mumkin.
+          </p>
           <CommentList commentList={comments} />
           <AddCommentBox />
         </div>
       </div>
+      <Modal
+        isOpen={isAddWordModalOpen}
+        onClose={() => setAddWordModalOpen(false)}
+        title="Words.uz"
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-lg">Yangi so'z qo'shish </p>
+          <p>
+            Siz ma'lumotlar bazasiga yangi so'z qo'shishingiz mumkin va u so'z
+            adminlardan tomonidan tekshirilgandan so'ng qidiruv uchun mavjud
+            bo'ladi.
+          </p>
+          <p>
+            So'z faqat o'zbek yoki ingliz tillaridagi <b>birlik ot</b> bo'lishi
+            shart.
+          </p>
+          <Input
+            id="new_word"
+            label="O'zbek yoki ingliz tillaridagi birlik so'z:"
+          />
+          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit">
+            Qo'shish
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 };
