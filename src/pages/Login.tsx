@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import Modal from "../components/Modal";
 
 const Login: React.FC = () => {
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+
   return (
     <div className="flex justify-center">
       <div className="flex flex-col gap-4  max-w-[500px]">
@@ -22,7 +25,12 @@ const Login: React.FC = () => {
           <Button className="bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400">
             Kirish
           </Button>
-          <p className="text-blue-500 hover:text-orange-400 cursor-pointer">
+          <p
+            className="text-blue-500 hover:text-orange-400 cursor-pointer"
+            onClick={() => {
+              setPasswordModalOpen(true);
+            }}
+          >
             Parolni unutdim
           </p>
         </div>
@@ -42,6 +50,24 @@ const Login: React.FC = () => {
           usuli yordamida yodlashni boshlashingiz mumkin.
         </p>
       </div>
+      <Modal
+        isOpen={isPasswordModalOpen}
+        onClose={() => setPasswordModalOpen(false)}
+        title="Words.uz"
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-lg">Parolni tiklash</p>
+          <p>
+            Parolni tiklash uchun saytda ro'yxatdan o'tishda foydalanilgan{" "}
+            <b>email</b> manzilini kiriting. Keyin esa parolni o'zgartirish
+            bo'yicha ko'rsatmalar olasiz.
+          </p>
+          <Input id="email" label="Email" />
+          <Button className="bg-yellow-500 hover:bg-yellow-400 rounded-md text-black w-fit">
+            Tiklash
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 };
