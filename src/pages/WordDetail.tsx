@@ -5,10 +5,12 @@ import TensesTable from "../components/TensesTable";
 import Button from "../components/Button";
 import AddCommentBox from "../components/AddCommentBox";
 import Modal from "../components/Modal";
+import Input from "../components/Input";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isSaveWordModalOpen, setSaveWordModalOpen] = useState(false);
+  const [isAddWordModalOpen, setAddWordModalOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-5">
@@ -32,7 +34,7 @@ const WordDetail: React.FC = () => {
           </p>
           <Button
             className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white"
-            onClick={() => setModalOpen(true)}
+            onClick={() => setSaveWordModalOpen(true)}
           >
             <i className="fa-solid fa-bookmark mr-1"></i>
             Saqlanganlarga qo'shish
@@ -127,7 +129,12 @@ const WordDetail: React.FC = () => {
               </div>
             );
           })}
-          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white">
+          <Button
+            className="bg-green-500 hover:bg-green-400 rounded-md text-white"
+            onClick={() => {
+              setAddWordModalOpen(true);
+            }}
+          >
             Namuna qo'shish
           </Button>
         </div>
@@ -146,8 +153,8 @@ const WordDetail: React.FC = () => {
       </div>
 
       <Modal
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
+        isOpen={isSaveWordModalOpen}
+        onClose={() => setSaveWordModalOpen(false)}
         title="Words.uz"
       >
         <div className="flex flex-col gap-4">
@@ -179,6 +186,24 @@ const WordDetail: React.FC = () => {
               <option value="verb">Fe'l</option>
             </select>
           </div>
+          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit">
+            Qo'shish
+          </Button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isAddWordModalOpen}
+        onClose={() => setAddWordModalOpen(false)}
+        title="Words.uz"
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-lg">Namunaviy jumla qo'shish </p>
+          <p>
+            <b>{word}</b> so'ziga jumla qo'shing va u adminlar tekshiruvdan
+            o'tgandan so'ng saytda nashr etiladi.
+          </p>
+          <Input id="example_en" label="Ingliz tilidagi namuna" />
+          <Input id="example_uz" label="O'zbek tilidagi tarjima" />
           <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit">
             Qo'shish
           </Button>
