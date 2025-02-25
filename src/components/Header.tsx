@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Input from "./Input";
 import Menu from "./Menu";
 import { menuOptions } from "../config/menuConfig";
@@ -8,11 +7,14 @@ import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-
+  
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && searchTerm.trim()) {
-      navigate(`/en/${searchTerm.trim()}`);
+      if (searchTerm.trim().includes(" ")) {
+        alert("faqat bitta so'z kiriting");
+      } else {
+        window.open(`/en/${searchTerm.trim()}`);
+      }
     }
   };
 
