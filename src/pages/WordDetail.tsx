@@ -15,17 +15,20 @@ const WordDetail: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [reload, setReload] = useState(true);
 
   useEffect(() => {
     const fetchWordDetails = async () => {
       try {
+        setLoading(true);
         const response = await fetch(`https://chatlink.uz/api/words/${word}`);
         if (!response.ok) {
           throw new Error("Failed to fetch word details");
         }
         const data = await response.json();
+        console.log("First Fetch:", data);
         setWordDetails(data);
-        setTenseList(data?.verbForms)
+        setTenseList(data?.verbForms || []);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -34,9 +37,21 @@ const WordDetail: React.FC = () => {
     };
 
     fetchWordDetails();
-  }, [word]);
- 
-  if (loading) return <p>Loading...</p>;
+  }, [word, reload]);
+
+  // Trigger second fetch after first one completes
+  useEffect(() => {
+    if (wordDetails) {
+      console.log("Triggering second fetch...");
+      setReload(false);
+    }
+  }, [wordDetails]);
+
+  useEffect(() => {
+    console.log("tenseList updated:", tenseList);
+  }, [tenseList]);
+
+  if (loading && reload) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!wordDetails) return <p>No data found.</p>;
 
@@ -75,73 +90,151 @@ const WordDetail: React.FC = () => {
               <i className="fa-solid fa-volume-high"></i>
             </button>
           </div>
-          {wordDetails?.definitions.map((def: { typeEn: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; typeUz: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; plural: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; synonymList: any[]; others: any[]; }, index: React.Key | null | undefined) => {
-            return (
-              <div key={index}>
-                <p className="flex gap-2 text-lg">
-                  <span className="font-bold">{def.typeEn}</span>
-                  <span>{def.typeUz}</span>
-                </p>
-                <p className="flex text-gray-500">
-                  <span className="italic">Ko'plik shakli</span>
-                  &nbsp;(plural):&nbsp;
-                  <span className="text-blue-primary">{def.plural}</span>.
-                </p>
-                <p className="flex flex-wrap">
-                  <span className="italic text-black">Sinonimlari:&nbsp;</span>
-                  {def.synonymList?.map((synonym, index) => {
-                    return (
-                      <Link key={index} to={`/en/${synonym}`}>
-                        <span className="text-blue-primary hover:text-orange-500 text-md">
-                          {synonym}
-                        </span>
-                        {index == def.synonymList.length - 1 ? "." : ","}
-                        &nbsp;
-                      </Link>
-                    );
-                  })}
-                </p>
-                <div className="flex flex-col gap-4 px-2">
-                  {def.others.map((d, index) => {
-                    return (
-                      <div key={index} className="flex flex-col gap-4">
-                        <p>
-                          {index + 1 + ". "}
-                          <span className="font-bold">{d.meaning}</span>
-                        </p>
-                        {d.examples?.map((e: { phrase: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; translation: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => {
-                          return (
-                            <div key={index} className="flex flex-col px-4">
-                              <p>{e.phrase}</p>
-                              <p className="italic text-gray-500">
-                                {e.translation}
-                              </p>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
+          {wordDetails?.definitions.map(
+            (
+              def: {
+                typeEn:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | null
+                  | undefined;
+                typeUz:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | null
+                  | undefined;
+                plural:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | null
+                  | undefined;
+                synonymList: any[];
+                others: any[];
+              },
+              index: React.Key | null | undefined,
+            ) => {
+              return (
+                <div key={index}>
+                  <p className="flex gap-2 text-lg">
+                    <span className="font-bold">{def.typeEn}</span>
+                    <span>{def.typeUz}</span>
+                  </p>
+                  <p className="flex text-gray-500">
+                    <span className="italic">Ko'plik shakli</span>
+                    &nbsp;(plural):&nbsp;
+                    <span className="text-blue-primary">{def.plural}</span>.
+                  </p>
+                  <p className="flex flex-wrap">
+                    <span className="italic text-black">
+                      Sinonimlari:&nbsp;
+                    </span>
+                    {def.synonymList?.map((synonym, index) => {
+                      return (
+                        <Link key={index} to={`/en/${synonym}`}>
+                          <span className="text-blue-primary hover:text-orange-500 text-md">
+                            {synonym}
+                          </span>
+                          {index == def.synonymList.length - 1 ? "." : ","}
+                          &nbsp;
+                        </Link>
+                      );
+                    })}
+                  </p>
+                  <div className="flex flex-col gap-4 px-2">
+                    {def.others.map((d, index) => {
+                      return (
+                        <div key={index} className="flex flex-col gap-4">
+                          <p>
+                            {index + 1 + ". "}
+                            <span className="font-bold">{d.meaning}</span>
+                          </p>
+                          {d.examples?.map(
+                            (
+                              e: {
+                                phrase:
+                                  | string
+                                  | number
+                                  | boolean
+                                  | React.ReactElement<
+                                      any,
+                                      string | React.JSXElementConstructor<any>
+                                    >
+                                  | Iterable<React.ReactNode>
+                                  | React.ReactPortal
+                                  | null
+                                  | undefined;
+                                translation:
+                                  | string
+                                  | number
+                                  | boolean
+                                  | React.ReactElement<
+                                      any,
+                                      string | React.JSXElementConstructor<any>
+                                    >
+                                  | Iterable<React.ReactNode>
+                                  | React.ReactPortal
+                                  | null
+                                  | undefined;
+                              },
+                              index: React.Key | null | undefined,
+                            ) => {
+                              return (
+                                <div key={index} className="flex flex-col px-4">
+                                  <p>{e.phrase}</p>
+                                  <p className="italic text-gray-500">
+                                    {e.translation}
+                                  </p>
+                                </div>
+                              );
+                            },
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            },
+          )}
         </div>
         <div className="flex flex-col md:flex-1 gap-4 items-start">
           <p className="text-2xl font-bold">Anagrammalar</p>
           <p>
             <span className="font-bold">{word}</span> bilan bir xil harflarni
             o'z ichiga olgan so'zlar:
-            {wordDetails?.anagrams.map((el: string, index: React.Key | null | undefined) => {
-              return (
-                <span key={index}>
-                  <span className="text-blue-primary hover:cursor-pointer hover:text-orange-500">
-                    {" " + el}
+            {wordDetails?.anagrams.map(
+              (el: string, index: React.Key | null | undefined) => {
+                return (
+                  <span key={index}>
+                    <span className="text-blue-primary hover:cursor-pointer hover:text-orange-500">
+                      {" " + el}
+                    </span>
+                    {index == wordDetails?.anagrams.length - 1 ? "." : ", "}
                   </span>
-                  {index == wordDetails?.anagrams.length - 1 ? "." : ", "}
-                </span>
-              );
-            })}
+                );
+              },
+            )}
           </p>
           <p className="text-2xl font-bold">Foydalanish chastotasi</p>
           <p>
@@ -149,14 +242,44 @@ const WordDetail: React.FC = () => {
             <span className="font-bold">{wordDetails?.usageFrequency}</span> ta.
           </p>
           <p className="text-2xl font-bold">Namunaviy jumlalar</p>
-          {wordDetails?.exampleSentences?.map((s: { sentence: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; translation: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => {
-            return (
-              <div key={index} className="flex flex-col">
-                <p>{s.sentence}</p>
-                <p className="italic text-gray-500">{s.translation}</p>
-              </div>
-            );
-          })}
+          {wordDetails?.exampleSentences?.map(
+            (
+              s: {
+                sentence:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | null
+                  | undefined;
+                translation:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | null
+                  | undefined;
+              },
+              index: React.Key | null | undefined,
+            ) => {
+              return (
+                <div key={index} className="flex flex-col">
+                  <p>{s.sentence}</p>
+                  <p className="italic text-gray-500">{s.translation}</p>
+                </div>
+              );
+            },
+          )}
           <Button
             className="bg-green-500 hover:bg-green-400 rounded-md text-white"
             onClick={() => {
@@ -168,7 +291,7 @@ const WordDetail: React.FC = () => {
         </div>
       </div>
 
-      <TensesTable tenseList={tenseList} />
+      <TensesTable key={JSON.stringify(tenseList)} tenseList={tenseList} />
 
       <div className="mt-6 lg:mt-12 flex flex-col items-left self-center text-left gap-4">
         <h1 className="font-bold text-2xl text-left">Sharhlar</h1>
