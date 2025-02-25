@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import AddCommentBox from "../components/AddCommentBox";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
+import ErrorPage from "./ErrorPage";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -52,7 +53,7 @@ const WordDetail: React.FC = () => {
   }, [tenseList]);
 
   if (loading && reload) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <ErrorPage />;
   if (!wordDetails) return <p>No data found.</p>;
 
   return (
