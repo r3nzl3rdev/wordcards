@@ -13,7 +13,7 @@ const Header: React.FC = () => {
       if (searchTerm.trim().includes(" ")) {
         alert("faqat bitta so'z kiriting");
       } else {
-        window.open(`/en/${searchTerm.trim()}`);
+        window.open(`/en/${searchTerm.trim()}`, "_self");
       }
     }
   };
