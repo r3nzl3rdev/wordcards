@@ -23,13 +23,13 @@ interface TensesTableProps {
 const TensesTable: React.FC<TensesTableProps> = ({ tenseList }) => {
   return (
     <div className="flex flex-col w-full gap-4">
-      {tenseList.map((tense, index) => {
+      {tenseList?.map((tense, index) => {
         return (
           <div
             key={index}
             className="grid grid-cols-1 md:grid-cols-3 divide-x divide-gray-300 border border-gray-300 text-md"
           >
-            {tense.content.map((el, index) => {
+            {tense?.content.map((el, index) => {
               return (
                 <div key={index} className="grid grid-cols-1 divide-y">
                   <div className="p-3 bg-green-primary text-black font-bold">

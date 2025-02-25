@@ -9,6 +9,7 @@ import Input from "../components/Input";
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
   const [wordDetails, setWordDetails] = useState<any>(null);
+  const [tenseList, setTenseList] = useState<any>(null);
   const [isSaveWordModalOpen, setSaveWordModalOpen] = useState(false);
   const [isAddWordModalOpen, setAddWordModalOpen] = useState(false);
 
@@ -24,6 +25,7 @@ const WordDetail: React.FC = () => {
         }
         const data = await response.json();
         setWordDetails(data);
+        setTenseList(data?.verbForms)
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -33,7 +35,7 @@ const WordDetail: React.FC = () => {
 
     fetchWordDetails();
   }, [word]);
-  
+ 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!wordDetails) return <p>No data found.</p>;
@@ -67,13 +69,13 @@ const WordDetail: React.FC = () => {
           </Button>
           <div className="flex gap-2 items-center">
             <p className="text-2xl font-bold text-green-primary">
-              [{wordDetails.transcription}]
+              [{wordDetails?.transcription}]
             </p>
             <button className="py-2 px-3 border bg-gray-100 border-gray-300 rounded-md hover:bg-gray-300 hover:border-gray-400">
               <i className="fa-solid fa-volume-high"></i>
             </button>
           </div>
-          {wordDetails.definitions.map((def: { typeEn: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; typeUz: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; plural: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; synonymList: any[]; others: any[]; }, index: React.Key | null | undefined) => {
+          {wordDetails?.definitions.map((def: { typeEn: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; typeUz: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; plural: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; synonymList: any[]; others: any[]; }, index: React.Key | null | undefined) => {
             return (
               <div key={index}>
                 <p className="flex gap-2 text-lg">
@@ -130,13 +132,13 @@ const WordDetail: React.FC = () => {
           <p>
             <span className="font-bold">{word}</span> bilan bir xil harflarni
             o'z ichiga olgan so'zlar:
-            {wordDetails.anagrams.map((el: string, index: React.Key | null | undefined) => {
+            {wordDetails?.anagrams.map((el: string, index: React.Key | null | undefined) => {
               return (
                 <span key={index}>
                   <span className="text-blue-primary hover:cursor-pointer hover:text-orange-500">
                     {" " + el}
                   </span>
-                  {index == wordDetails.anagrams.length - 1 ? "." : ", "}
+                  {index == wordDetails?.anagrams.length - 1 ? "." : ", "}
                 </span>
               );
             })}
@@ -144,10 +146,10 @@ const WordDetail: React.FC = () => {
           <p className="text-2xl font-bold">Foydalanish chastotasi</p>
           <p>
             1 million so'zga {word} so'zidan foydalanish soni:{" "}
-            <span className="font-bold">{wordDetails.usageFrequency}</span> ta.
+            <span className="font-bold">{wordDetails?.usageFrequency}</span> ta.
           </p>
           <p className="text-2xl font-bold">Namunaviy jumlalar</p>
-          {wordDetails.exampleSentences?.map((s: { sentence: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; translation: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => {
+          {wordDetails?.exampleSentences?.map((s: { sentence: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; translation: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => {
             return (
               <div key={index} className="flex flex-col">
                 <p>{s.sentence}</p>
@@ -166,7 +168,7 @@ const WordDetail: React.FC = () => {
         </div>
       </div>
 
-      <TensesTable tenseList={wordDetails.verbForms} />
+      <TensesTable tenseList={tenseList} />
 
       <div className="mt-6 lg:mt-12 flex flex-col items-left self-center text-left gap-4">
         <h1 className="font-bold text-2xl text-left">Sharhlar</h1>
