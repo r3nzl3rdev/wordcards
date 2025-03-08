@@ -6,10 +6,29 @@ import Modal from "../components/Modal";
 
 const Login: React.FC = () => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await fetch("https://backend.com/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      localStorage.setItem("token", data.token); // Store token for further requests
+      alert("Login successful!");
+    } else {
+      alert("Login failed!");
+    }
+  };
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col gap-4  max-w-[500px]">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4  max-w-[500px]">
         <h1 className="text-4xl font-bold">Kirish</h1>
         <p>
           Shaxsiy akkauntingizga kirish uchun{" "}
@@ -18,11 +37,11 @@ const Login: React.FC = () => {
         </p>
 
         <div className="flex flex-col gap-4 w-full mt-4">
-          <Input className="rounded" id="email" label="Email:" />
-          <Input className="rounded" id="parol" label="Parol:" />
+          <Input className="rounded" id="email" label="Email:" onChange={(e) => { setUsername(e.target.value) }} />
+          <Input className="rounded" id="parol" label="Parol:" onChange={(e) => { setPassword(e.target.value) }} />
         </div>
         <div className="flex gap-2 items-center">
-          <Button className="bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400">
+          <Button className="bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400" type="submit">
             Kirish
           </Button>
           <p
@@ -49,7 +68,7 @@ const Login: React.FC = () => {
           </Link>{" "}
           usuli yordamida yodlashni boshlashingiz mumkin.
         </p>
-      </div>
+      </form>
       <Modal
         isOpen={isPasswordModalOpen}
         onClose={() => setPasswordModalOpen(false)}
