@@ -13,6 +13,7 @@ import List from "./pages/List.tsx";
 import WordDetail from "./pages/WordDetail.tsx";
 import IntervalRepitition from "./pages/Menu/IntervalRepitition.tsx";
 import Login from "./pages/Login.tsx";
+import BookMarks from "./pages/BookMarks.tsx";
 
 const routes = [
   {
@@ -68,6 +69,10 @@ const routes = [
       {
         path: "en/:word",
         element: <WordDetail />,
+      },
+      {
+        path: "bookmarks",
+        element: <BookMarks />
       },
     ],
   },

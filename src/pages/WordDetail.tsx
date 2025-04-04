@@ -48,10 +48,6 @@ const WordDetail: React.FC = () => {
     }
   }, [wordDetails]);
 
-  useEffect(() => {
-    console.log("tenseList updated:", tenseList);
-  }, [tenseList]);
-
   if (loading && reload) return <p>Loading...</p>;
   if (error) return <ErrorPage />;
   if (!wordDetails) return <p>No data found.</p>;

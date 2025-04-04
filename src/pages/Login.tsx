@@ -6,6 +6,8 @@ import Modal from "../components/Modal";
 
 const Login: React.FC = () => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+  const [isRegisterdModalOpen, setRegisterModalOpen] = useState(false);
+  const [isCodeSent, setCodeSent] = useState(false);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -68,6 +70,9 @@ const Login: React.FC = () => {
           </Link>{" "}
           usuli yordamida yodlashni boshlashingiz mumkin.
         </p>
+        <Button className="bg-green-primary w-fit rounded-md text-white hover:bg-green-400" type="submit" onClick={() => setRegisterModalOpen(true)}>
+          Ro'yhatdan O'tish
+        </Button>
       </form>
       <Modal
         isOpen={isPasswordModalOpen}
@@ -85,6 +90,33 @@ const Login: React.FC = () => {
           <Button className="bg-yellow-500 hover:bg-yellow-400 rounded-md text-black w-fit">
             Tiklash
           </Button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isRegisterdModalOpen}
+        onClose={() => setRegisterModalOpen(false)}
+        title="Words.uz"
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-lg">Ro'yxatdan o'tish</p>
+          <p>
+            Ro'yxatdan o'tish uchun elektron pochtangizni kiriting. Unga vaqtinchalik parol yuboriladi.
+          </p>
+          <Input id="email" label="Email" />
+          <Button className="bg-yellow-500 hover:bg-yellow-400 rounded-md text-black w-fit"
+            onClick={() => setCodeSent(true)}
+          >
+            Kod yuborish
+          </Button>
+
+          {isCodeSent && (
+            <>
+              <Input id="verification-code" label="Tasdiqlash kodi" />
+              <Button className="bg-blue-500 hover:bg-blue-400 rounded-md text-white w-fit">
+                Yuborish
+              </Button>
+            </>
+          )}
         </div>
       </Modal>
     </div>
