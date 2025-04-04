@@ -58,18 +58,7 @@ const BookMarks: React.FC = () => {
             <div className=''>
 
             </div>
-              {
-                bookmarkList?.map((bookmark, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="grid grid-cols-1 md:grid-cols-3 divide-x divide-gray-300 border border-gray-300 text-md"
-                    >
-
-                    </div>
-                  );
-                })
-              }
+              
             </div>
 
 
