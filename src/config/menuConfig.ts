@@ -10,3 +10,10 @@ export const menuOptions = [
   { title: "Interval Repetition Method", route: "/interval-repetition" },
   { title: "Reviews", route: "/reviews" },
 ];
+
+export const authRoutes = [
+  { title: "Bookmarks", route: "/bookmarks" },
+  { title: "Exercises", route: "/exercises" },
+  { title: "Settings", route: "/settings" },
+  { title: "Exit", route: "/logout" },
+];

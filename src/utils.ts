@@ -21,3 +21,11 @@ export function getLastWord(str: string) {
 
   return words[words.length - 1];
 }
+
+export function getGmailUsername(email: string): string {
+  const atIndex = email.indexOf('@');
+
+  if (atIndex === -1) return '';
+
+  return email.substring(0, atIndex);
+}

@@ -23,7 +23,9 @@ const Login: React.FC = () => {
 
     const data = await response.json();
     if (response.ok) {
+      localStorage.setItem("email", data.email)
       localStorage.setItem("accessToken", data.accessToken)
+      localStorage.setItem("refreshToken", data.refreshToken)
       alert("Login successful!");
       navigate("/settings")
     } else {
@@ -60,7 +62,9 @@ const Login: React.FC = () => {
 
     const data = await response.json();
     if (response.ok) {
+      localStorage.setItem("email", data.email)
       localStorage.setItem("accessToken", data.accessToken)
+      localStorage.setItem("refreshToken", data.refreshToken)
       alert("Registered successfully!");
       navigate("/settings")
     } else {

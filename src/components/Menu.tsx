@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 
@@ -9,9 +9,10 @@ interface Option {
 
 interface MenuProps {
   options: Option[];
+  children?: ReactNode; // Allow full button content via children
 }
 
-const Menu: React.FC<MenuProps> = ({ options }) => {
+const Menu: React.FC<MenuProps> = ({ options, children }) => {
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
@@ -40,14 +41,14 @@ const Menu: React.FC<MenuProps> = ({ options }) => {
   return (
     <div
       ref={menuRef}
-      className={`${isMenuOpen ? "bg-gray-300 text-black" : "text-white"} flex items-center justify-between lg:hover:text-black lg:hover:bg-gray-300 lg:active::bg-gray-300`}
+      className={`${isMenuOpen ? "bg-gray-300 text-black" : "text-white"} relative flex items-center justify-between lg:hover:text-black lg:hover:bg-gray-300 lg:active::bg-gray-300`}
     >
-      <Button className="gap-1 h-full" onClick={toggleMenu}>
-        <i className="fa-solid fa-bars"></i>
-        <p className="text-md hidden sm:flex">Menu</p>
+      <Button className="gap-1 h-full" onClick={toggleMenu} onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
+        {children}
       </Button>
       {isMenuOpen && (
-        <div className="absolute flex flex-col left-0 top-[45px] bg-white text-black shadow-lg shadow-gray-400 text-md">
+        <div className="absolute flex flex-col left-0 top-[45px] bg-white text-black shadow-lg shadow-gray-400 text-md"
+          onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
           {options.map((option, index) => (
             <Link
               to={option.route}
