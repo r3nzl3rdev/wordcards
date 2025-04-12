@@ -14,6 +14,7 @@ import WordDetail from "./pages/WordDetail.tsx";
 import IntervalRepitition from "./pages/Menu/IntervalRepitition.tsx";
 import Login from "./pages/Login.tsx";
 import BookMarks from "./pages/BookMarks.tsx";
+import Settings from "./pages/Settings.tsx";
 
 const routes = [
   {
@@ -73,6 +74,10 @@ const routes = [
       {
         path: "bookmarks",
         element: <BookMarks />
+      },
+{
+        path: "settings",
+        element: <Settings />
       },
     ],
   },

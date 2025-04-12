@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 
 const Login: React.FC = () => {
@@ -11,6 +11,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmationCode, setCode] = useState<string>("")
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,14 +23,14 @@ const Login: React.FC = () => {
 
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("token", data.token); // Store token for further requests
+      localStorage.setItem("accessToken", data.accessToken)
       alert("Login successful!");
+      navigate("/settings")
     } else {
       alert("Login failed!");
-
-      console.log(JSON.stringify({ email, password }))
-      console.log(data)
     }
+
+    console.log(data)
   };
 
   const handleRegSubmit = async (e: React.FormEvent) => {
@@ -40,17 +41,12 @@ const Login: React.FC = () => {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json();
+    await response.json();
     if (response.ok) {
       alert("Code sent!");
       setCodeSent(true)
     } else {
       alert("Registration failed!");
-
-
-      console.log(JSON.stringify({ email, password }))
-      console.log(response)
-      console.log(data)
     }
   }
 
@@ -59,23 +55,23 @@ const Login: React.FC = () => {
     const response = await fetch("https://chatlink.uz/api/auth/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({confirmationCode}),
+      body: JSON.stringify({ confirmationCode }),
     });
 
     const data = await response.json();
     if (response.ok) {
+      localStorage.setItem("accessToken", data.accessToken)
       alert("Registered successfully!");
+      navigate("/settings")
     } else {
       alert("Registration failed!");
-
-      console.log(response)
-      console.log(data)
     }
+    console.log(data)
   }
 
   return (
     <div className="flex justify-center">
-      <form onSubmit={handleLoginSubmit} className="flex flex-col gap-4  max-w-[500px]">
+      <div className="flex flex-col gap-4  max-w-[500px]">
         <h1 className="text-4xl font-bold">Kirish</h1>
         <p>
           Shaxsiy akkauntingizga kirish uchun{" "}
@@ -88,7 +84,7 @@ const Login: React.FC = () => {
           <Input className="rounded" id="parol" label="Parol:" onChange={(e) => { setPassword(e.target.value) }} />
         </div>
         <div className="flex gap-2 items-center">
-          <Button className="bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400" type="submit">
+          <Button onClick={handleLoginSubmit} className="bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400">
             Kirish
           </Button>
           <p
@@ -115,10 +111,10 @@ const Login: React.FC = () => {
           </Link>{" "}
           usuli yordamida yodlashni boshlashingiz mumkin.
         </p>
-        <Button className="bg-green-primary w-fit rounded-md text-white hover:bg-green-400" type="submit" onClick={() => setRegisterModalOpen(true)}>
+        <Button className="bg-green-primary w-fit rounded-md text-white hover:bg-green-400" onClick={() => setRegisterModalOpen(true)}>
           Ro'yhatdan O'tish
         </Button>
-      </form>
+      </div>
       <Modal
         isOpen={isPasswordModalOpen}
         onClose={() => setPasswordModalOpen(false)}
