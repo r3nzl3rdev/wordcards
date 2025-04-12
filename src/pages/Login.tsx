@@ -8,15 +8,16 @@ const Login: React.FC = () => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
   const [isRegisterdModalOpen, setRegisterModalOpen] = useState(false);
   const [isCodeSent, setCodeSent] = useState(false);
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmationCode, setCode] = useState<string>("")
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("https://backend.com/login", {
+    const response = await fetch("https://chatlink.uz/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
@@ -25,12 +26,56 @@ const Login: React.FC = () => {
       alert("Login successful!");
     } else {
       alert("Login failed!");
+
+      console.log(JSON.stringify({ email, password }))
+      console.log(data)
     }
   };
 
+  const handleRegSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await fetch("https://chatlink.uz/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert("Code sent!");
+      setCodeSent(true)
+    } else {
+      alert("Registration failed!");
+
+
+      console.log(JSON.stringify({ email, password }))
+      console.log(response)
+      console.log(data)
+    }
+  }
+
+  const handleCodeSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await fetch("https://chatlink.uz/api/auth/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({confirmationCode}),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert("Registered successfully!");
+    } else {
+      alert("Registration failed!");
+
+      console.log(response)
+      console.log(data)
+    }
+  }
+
   return (
     <div className="flex justify-center">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4  max-w-[500px]">
+      <form onSubmit={handleLoginSubmit} className="flex flex-col gap-4  max-w-[500px]">
         <h1 className="text-4xl font-bold">Kirish</h1>
         <p>
           Shaxsiy akkauntingizga kirish uchun{" "}
@@ -39,7 +84,7 @@ const Login: React.FC = () => {
         </p>
 
         <div className="flex flex-col gap-4 w-full mt-4">
-          <Input className="rounded" id="email" label="Email:" onChange={(e) => { setUsername(e.target.value) }} />
+          <Input className="rounded" id="email" label="Email:" onChange={(e) => { setEmail(e.target.value) }} />
           <Input className="rounded" id="parol" label="Parol:" onChange={(e) => { setPassword(e.target.value) }} />
         </div>
         <div className="flex gap-2 items-center">
@@ -79,7 +124,7 @@ const Login: React.FC = () => {
         onClose={() => setPasswordModalOpen(false)}
         title="Words.uz"
       >
-        <div className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4">
           <p className="text-lg">Parolni tiklash</p>
           <p>
             Parolni tiklash uchun saytda ro'yxatdan o'tishda foydalanilgan{" "}
@@ -87,10 +132,10 @@ const Login: React.FC = () => {
             bo'yicha ko'rsatmalar olasiz.
           </p>
           <Input id="email" label="Email" />
-          <Button className="bg-yellow-500 hover:bg-yellow-400 rounded-md text-black w-fit">
+          <Button type="submit" className="bg-yellow-500 hover:bg-yellow-400 rounded-md text-black w-fit">
             Tiklash
           </Button>
-        </div>
+        </form>
       </Modal>
       <Modal
         isOpen={isRegisterdModalOpen}
@@ -102,17 +147,18 @@ const Login: React.FC = () => {
           <p>
             Ro'yxatdan o'tish uchun elektron pochtangizni kiriting. Unga vaqtinchalik parol yuboriladi.
           </p>
-          <Input id="email" label="Email" />
+          <Input className="rounded" id="email" label="Email:" onChange={(e) => { setEmail(e.target.value) }} />
+          <Input className="rounded" id="parol" label="Parol:" onChange={(e) => { setPassword(e.target.value) }} />
           <Button className="bg-yellow-500 hover:bg-yellow-400 rounded-md text-black w-fit"
-            onClick={() => setCodeSent(true)}
+            onClick={handleRegSubmit}
           >
             Kod yuborish
           </Button>
 
           {isCodeSent && (
             <>
-              <Input id="verification-code" label="Tasdiqlash kodi" />
-              <Button className="bg-blue-500 hover:bg-blue-400 rounded-md text-white w-fit">
+              <Input id="verification-code" label="Tasdiqlash kodi" onChange={(e) => { setCode(e.target.value) }} />
+              <Button onClick={handleCodeSubmit} className="bg-blue-500 hover:bg-blue-400 rounded-md text-white w-fit">
                 Yuborish
               </Button>
             </>
