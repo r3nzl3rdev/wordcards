@@ -50,7 +50,7 @@ const Menu: React.FC<MenuProps> = ({ options, itemsPosition = "left", children }
           {children}
         </Button>
         {isMenuOpen && (
-          <div className={`absolute flex flex-col ${itemsPosition}-0 top-[45px] ml-[-50px] sm:ml-0 min-w-full bg-white text-black shadow-lg shadow-gray-400 text-md overflow-visible`}
+          <div className={`absolute flex flex-col ${itemsPosition == "right" ? "ml-[-52%]" : ""} ${itemsPosition}-0 top-[45px] sm:ml-0 min-w-full bg-white text-black shadow-lg shadow-gray-400 text-md overflow-visible`}
             onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
             {options.map((option, index) => (
               <Link

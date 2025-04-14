@@ -21,7 +21,7 @@ const Exercises: React.FC = () => {
           <p>
             Agar siz hali xatcho'plaringizga so'z qo'shmagan bo'lsangiz, avvalo <b>Ekspress testdan</b> o'tishingizni tavsiya qilamiz.
           </p>
-          <div className="flex flex-wrap p-2 gap-8 pb-6 max-w-[900px]">
+          <div className="flex flex-wrap items-center flex-col md:flex-row p-2 gap-8 pb-6 max-w-[900px]">
             {cards.map((el, index) => (
               <Card
                 key={index}
