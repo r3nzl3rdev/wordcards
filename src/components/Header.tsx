@@ -50,9 +50,9 @@ const Header: React.FC = () => {
       {
         isAuth ?
           <Menu options={authRoutes} itemsPosition="right">
-            <i className="fa-solid fa-user text-sm"></i>
+            <i className="fa-solid fa-user text-lg sm:text-sm"></i>
             <p className="hidden sm:flex">{username}</p>
-            <i className="fa-solid fa-caret-down text-2xl sm:text-lg"></i>
+            <i className="fa-solid fa-caret-down text-lg"></i>
           </Menu>
           :
           <Link to="/login">
