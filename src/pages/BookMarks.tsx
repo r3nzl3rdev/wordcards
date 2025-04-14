@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 // import ErrorPage from './ErrorPage';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { bookmarks } from '../hardcode/hardcode';
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 type BookMark = {
   word: string;
@@ -42,7 +44,7 @@ const BookMarks: React.FC = () => {
   return (
     <ProtectedRoute>
       <div className="flex justify-center">
-        <div className="flex flex-col gap-4 max-w-[945px] overflow-auto items-start">
+        <div className="flex flex-col gap-4 max-w-[945px] overflow-auto no-scrollbar items-start">
           <h1 className="text-2xl md:text-4xl font-bold">Xatcho‘plar</h1>
           <p>
             Bu yerda siz o'zingiz belgilagan barcha so'zlarni, shuningdek ularni o'rganish jarayonini ko'rishingiz mumkin.
@@ -69,7 +71,11 @@ const BookMarks: React.FC = () => {
                   <>
                     <div className={`p-2 border-b border-l ${index % 2 === 0 ? "bg-white" : "bg-gray-200"}
                       ${index == bookmarkList.length - 1 ? "rounded-b-md " : ""}`}>
-                      <p>{el.word}</p>
+                      <Link
+                        to={`/en/${el.word}`}
+                        className="text-blue-500 hover:text-orange-400">
+                        <p>{el.word}</p>
+                      </Link>
                     </div>
                     <div className={`p-2 border-b ${index % 2 === 0 ? "bg-white" : "bg-gray-200"}`}>
                       <p>{el.translation}</p>
@@ -89,6 +95,13 @@ const BookMarks: React.FC = () => {
               </div>
             }
           </div>
+          <Button className='bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400'>
+            <i className="fa-solid fa-share mr-2"></i>
+            Mashqga kirish
+          </Button>
+          <p>
+            Jami so'zlar soni: <b>{bookmarkList?.length}</b>.
+          </p>
         </div>
       </div>
     </ProtectedRoute>
