@@ -36,7 +36,7 @@ const Header: React.FC = () => {
   return (
     <div className="flex w-full justify-between bg-green-primary fixed top-0 z-10">
       <div className="flex">
-        <Menu options={menuOptions}>
+        <Menu options={menuOptions} itemsPosition="left">
           <i className="fa-solid fa-bars"></i>
           <p className="text-md hidden sm:flex">Menu</p>
         </Menu>
@@ -49,9 +49,9 @@ const Header: React.FC = () => {
       </div>
       {
         isAuth ?
-          <Menu options={authRoutes}>
-            <p>{username}</p>
-            <i className="fa-solid fa-caret-down"></i>
+          <Menu options={authRoutes} itemsPosition="right">
+            <p className="hidden sm:flex">{username}</p>
+            <i className="fa-solid fa-caret-down text-2xl sm:text-lg"></i>
           </Menu>
           :
           <Link to="/login">

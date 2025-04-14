@@ -10,9 +10,10 @@ interface Option {
 interface MenuProps {
   options: Option[];
   children?: ReactNode; // Allow full button content via children
+  itemsPosition: "right" | "left";
 }
 
-const Menu: React.FC<MenuProps> = ({ options, children }) => {
+const Menu: React.FC<MenuProps> = ({ options, itemsPosition = "left", children }) => {
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
@@ -39,29 +40,33 @@ const Menu: React.FC<MenuProps> = ({ options, children }) => {
   }, [isMenuOpen]);
 
   return (
-    <div
-      ref={menuRef}
-      className={`${isMenuOpen ? "bg-gray-300 text-black" : "text-white"} relative flex items-center justify-between lg:hover:text-black lg:hover:bg-gray-300 lg:active::bg-gray-300`}
-    >
-      <Button className="gap-1 h-full" onClick={toggleMenu} onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
-        {children}
-      </Button>
-      {isMenuOpen && (
-        <div className="absolute flex flex-col left-0 top-[45px] bg-white text-black shadow-lg shadow-gray-400 text-md"
-          onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
-          {options.map((option, index) => (
-            <Link
-              to={option.route}
-              key={index}
-              className="p-2 hover:cursor-pointer hover:bg-gray-300"
-              onClick={toggleMenu}
-            >
-              <p className="whitespace-nowrap">{option.title}</p>
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
+    <>
+
+      <div
+        ref={menuRef}
+        className={`${isMenuOpen ? "bg-gray-300 text-black" : "text-white"} relative flex items-center justify-between lg:hover:text-black lg:hover:bg-gray-300 lg:active::bg-gray-300`}
+      >
+        <Button className="gap-1 h-full" onClick={toggleMenu} onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
+          {children}
+        </Button>
+        {isMenuOpen && (
+          <div className={`absolute flex flex-col ${itemsPosition}-0 top-[45px] ml-[-50px] sm:ml-0 min-w-full bg-white text-black shadow-lg shadow-gray-400 text-md overflow-visible`}
+            onMouseOver={() => setIsMenuOpen(true)} onMouseOut={() => setIsMenuOpen(false)}>
+            {options.map((option, index) => (
+              <Link
+                to={option.route}
+                key={index}
+                className="p-2 hover:cursor-pointer hover:bg-gray-300"
+                onClick={toggleMenu}
+              >
+                <p className="whitespace-nowrap">{option.title}</p>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+
+    </>
   );
 };
 

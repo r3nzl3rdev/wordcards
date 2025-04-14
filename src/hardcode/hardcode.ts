@@ -753,3 +753,13 @@ export const mostUsedWords = [
   { word: "at", frequency: 5391, translation: "da" },
   { word: "were", frequency: 5099, translation: "edi" },
 ];
+
+export const bookmarks = [
+  { word: "word", translation: "so'z", part_of_speech: "ot", level: 1, status: "o'rganilmoqda" },
+  { word: "eat", translation: "yemoq", part_of_speech: "fe'l", level: 1, status: "o'rganilmoqda" },
+  { word: "book", translation: "kitob", part_of_speech: "ot", level: 1, status: "o'rganilmoqda" },
+  { word: "house", translation: "uy", part_of_speech: "ot", level: 1, status: "o'rganilmoqda" },
+  { word: "run", translation: "yugurmoq", part_of_speech: "fe'l", level: 1, status: "o'rganilmoqda" },
+  { word: "eat", translation: "yemoq", part_of_speech: "fe'l", level: 1, status: "o'rganilmoqda" },
+  { word: "happy", translation: "xursand", part_of_speech: "sifat", level: 1, status: "o'rganilmoqda" }
+]
