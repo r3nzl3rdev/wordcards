@@ -51,7 +51,7 @@ const BookMarks: React.FC = () => {
             Daraja so'zni o'rganish jarayonini ko'rsatadi. O'z darajangizni oshirish uchun mashqlarni bajaring.
           </p>
 
-          <div className="flex flex-col w-fit overflow-auto items-start gap-4">
+          <div className="flex flex-col sm:w-full min-w-[700px] overflow-auto items-start gap-4">
             {
               loading && <p>Loading...</p>
               ||
@@ -60,7 +60,7 @@ const BookMarks: React.FC = () => {
               !bookmarkList && <p>No data found.</p>
               ||
               bookmarkList &&
-              <div className="grid grid-cols-5 min-w-[750px] lg:min-w-[973px] items-start text-md rounded-md overflow-auto">
+              <div className="grid grid-cols-5 w-full items-start text-md rounded-md overflow-auto">
                 <div className="p-2 font-bold bg-green-primary text-white rounded-tl">Word</div>
                 <div className="p-2 font-bold bg-green-primary  text-white">Translation</div>
                 <div className="p-2 font-bold bg-green-primary text-white">Part of Speech</div>
