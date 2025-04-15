@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
+import { hardNavigate } from '../utils'
 
 const Logout: React.FC = () => {
   useEffect(() => {
     localStorage.clear()
-    window.location.href = '/login'
+    hardNavigate("/")
   }, [])
 
   return null

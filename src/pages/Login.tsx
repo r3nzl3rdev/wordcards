@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
+import { hardNavigate } from "../utils";
 
 const Login: React.FC = () => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
@@ -23,11 +24,12 @@ const Login: React.FC = () => {
 
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("email", data.email)
+      localStorage.setItem("email", email)
       localStorage.setItem("accessToken", data.accessToken)
       localStorage.setItem("refreshToken", data.refreshToken)
+
       alert("Login successful!");
-      navigate("/settings")
+      hardNavigate("/settings")
     } else {
       alert("Login failed!");
     }

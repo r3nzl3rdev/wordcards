@@ -29,3 +29,8 @@ export function getGmailUsername(email: string): string {
 
   return email.substring(0, atIndex);
 }
+
+export const hardNavigate = (url: string) => {
+  window.location.href = url
+}
+
