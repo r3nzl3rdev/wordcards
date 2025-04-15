@@ -18,6 +18,7 @@ import Settings from "./pages/Settings.tsx";
 import Exercises from "./pages/Exercises.tsx";
 import Express from "./pages/Tests/Express.tsx";
 import EngUzb from "./pages/Tests/EngUzb.tsx";
+import Logout from "./pages/Logout.tsx";
 
 const routes = [
   {
@@ -93,7 +94,12 @@ const routes = [
       {
         path: "eng-uzb",
         element: <EngUzb />
+      },
+      {
+        path: "logout",
+        element: <Logout />
       }
+
     ],
   },
 ];
