@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 // import ErrorPage from './ErrorPage';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { bookmarks } from '../hardcode/hardcode';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 type BookMark = {
@@ -14,7 +14,7 @@ type BookMark = {
 }
 
 const BookMarks: React.FC = () => {
-
+  const navigate = useNavigate()
   const [bookmarkList, setBookmarkList] = useState<BookMark[]>();
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
@@ -95,9 +95,9 @@ const BookMarks: React.FC = () => {
               </div>
             }
           </div>
-          <Button className='bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400'>
+          <Button onClick={()=>navigate("/exercises")} className='bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400'>
             <i className="fa-solid fa-share mr-2"></i>
-            Mashqga kirish
+            Mashqlarga o'tish
           </Button>
           <p>
             Jami so'zlar soni: <b>{bookmarkList?.length}</b>.
