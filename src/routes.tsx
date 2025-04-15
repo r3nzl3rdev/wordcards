@@ -16,6 +16,8 @@ import Login from "./pages/Login.tsx";
 import BookMarks from "./pages/BookMarks.tsx";
 import Settings from "./pages/Settings.tsx";
 import Exercises from "./pages/Exercises.tsx";
+import Express from "./pages/Tests/Express.tsx";
+import EngUzb from "./pages/Tests/EngUzb.tsx";
 
 const routes = [
   {
@@ -84,6 +86,14 @@ const routes = [
         path: "exercises",
         element: <Exercises />
       },
+      {
+        path: "express",
+        element: <Express />
+      },
+      {
+        path: "eng-uzb",
+        element: <EngUzb />
+      }
     ],
   },
 ];
