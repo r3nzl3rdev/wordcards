@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col gap-4 max-w-[936px]">
-        <h1 className="text-2xl md:text-4xl font-bold">English-Uzbek Lug'at</h1>
+        <h1 className="text-2xl md:text-4xl font-bold">Inglizcha-O'zbekcha Lug'at</h1>
         <p>
           So'zlar ro'yxatini ko'rish uchun ular boshlanadigan harfni tanlang:
         </p>
