@@ -1,19 +1,20 @@
-export const menuOptions = [
-  { title: "Home", route: "/" },
-  { title: "Irregular Verbs", route: "/irregular" },
-  { title: "Plural", route: "/plural" },
-  { title: "Palindromes", route: "/palindromes" },
-  { title: "Numerals", route: "/numerals" },
-  { title: "Word Selection", route: "/wordle" },
-  { title: "Bulk Translation", route: "/bulk-translation" },
-  { title: "Frequency List", route: "/frequency-list" },
-  { title: "Interval Repetition Method", route: "/interval-repetition" },
-  { title: "Reviews", route: "/reviews" },
+; export const menuOptions = [
+  { title: "Bosh sahifa", route: "/" },
+  { title: "Noto'g'ri fe'llar", route: "/irregular" },
+  { title: "Ko'plik", route: "/plural" },
+  { title: "Palindromlar", route: "/palindromes" },
+  { title: "Raqamlar", route: "/numerals" },
+  { title: "So'z tanlash", route: "/wordle" },
+  { title: "Ommaviy tarjima", route: "/bulk-translation" },
+  { title: "Tez-tez ishlatiladigan so'zlar", route: "/frequency-list" },
+  { title: "Oraliqli takrorlash usuli", route: "/interval-repetition" },
+  { title: "Sharhlar", route: "/reviews" },
 ];
 
 export const authRoutes = [
-  { title: "Bookmarks", route: "/bookmarks" },
-  { title: "Exercises", route: "/exercises" },
-  { title: "Settings", route: "/settings" },
-  { title: "Exit", route: "/logout" },
+  { title: "Xatcho‘plar", route: "/bookmarks" },
+  { title: "Mashqlar", route: "/exercises" },
+  { title: "Sozlamalar", route: "/settings" },
+  { title: "Chiqish", route: "/logout" },
 ];
+
