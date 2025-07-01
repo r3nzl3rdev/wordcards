@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("https://chatlink.uz/api/auth/login", {
+    const response = await fetch("https://api.words.uz/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -39,11 +39,15 @@ const Login: React.FC = () => {
 
   const handleRegSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("https://chatlink.uz/api/auth/register", {
+    console.log("PRSSSSSSSSSSSSSSSSs")
+    const response = await fetch("https://api.words.uz/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+    console.log("OAKJEHFAHD:FJA")
+
+    console.log("reg: ", response)
 
     await response.json();
     if (response.ok) {
@@ -56,7 +60,7 @@ const Login: React.FC = () => {
 
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("https://chatlink.uz/api/auth/verify", {
+    const response = await fetch("https://api.words.uz/api/auth/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ confirmationCode }),

@@ -23,7 +23,7 @@ const BookMarks: React.FC = () => {
     const fetchBookmarks = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://chatlink.uz/api/bookmarks`);
+        const response = await fetch(`https://api.words.uz/api/bookmarks`);
         if (!response.ok) {
           throw new Error("Failed to fetch word details");
         }

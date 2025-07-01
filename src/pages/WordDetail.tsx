@@ -22,7 +22,8 @@ const WordDetail: React.FC = () => {
     const fetchWordDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://chatlink.uz/api/words/${word}`);
+        const response = await fetch(`https://api.words.uz/api/words/${word}`);
+      console.log("in: ", response)
         if (!response.ok) {
           throw new Error("Failed to fetch word details");
         }
