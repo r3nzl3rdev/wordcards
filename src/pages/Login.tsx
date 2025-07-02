@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("https://api.words.uz/api/auth/login", {
+    const response = await fetch("http://api2.words.uz:3004/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -40,7 +40,7 @@ const Login: React.FC = () => {
   const handleRegSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("PRSSSSSSSSSSSSSSSSs")
-    const response = await fetch("https://api.words.uz/api/auth/register", {
+    const response = await fetch("http://api2.words.uz:3004/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
 
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("https://api.words.uz/api/auth/verify", {
+    const response = await fetch("http://api2.words.uz:3004/api/auth/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ confirmationCode }),
