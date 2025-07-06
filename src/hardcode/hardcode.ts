@@ -1,5 +1,7 @@
 import { CardProps } from "../components/Card";
 
+export const API_URL = "http://api.words.uz/api";
+
 export const prefixList = [
   { title: "j j", definition: "- j" },
   { title: "j-", definition: "- j-pop" },

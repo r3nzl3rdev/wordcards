@@ -6,6 +6,7 @@ import AddCommentBox from "../components/AddCommentBox";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
 import ErrorPage from "./ErrorPage";
+import { API_URL } from "../hardcode/hardcode";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -22,8 +23,8 @@ const WordDetail: React.FC = () => {
     const fetchWordDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://api2.words.uz:3004/api/words/${word}`);
-      console.log("in: ", response)
+        const response = await fetch(`${API_URL}/words/${word}`);
+        console.log("in: ", response)
         if (!response.ok) {
           throw new Error("Failed to fetch word details");
         }
@@ -116,7 +117,7 @@ const WordDetail: React.FC = () => {
                     </span>
                     {def.synonymList?.map((synonym, index) => {
                       return (
-                        <Link key={index} to={`/en/${synonym}`}>
+                        <Link key={index} to={`/ en / ${synonym} `}>
                           <span className="text-blue-primary hover:text-orange-500 text-md">
                             {synonym}
                           </span>

@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import { hardNavigate } from "../utils";
+import { API_URL } from "../hardcode/hardcode";
 
 const Login: React.FC = () => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
@@ -16,7 +17,7 @@ const Login: React.FC = () => {
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://api2.words.uz:3004/api/auth/login", {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -39,13 +40,12 @@ const Login: React.FC = () => {
 
   const handleRegSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("PRSSSSSSSSSSSSSSSSs")
-    const response = await fetch("http://api2.words.uz:3004/api/auth/register", {
+    console.log("PRSSSSSSSSSSSSSSSS: ", JSON.stringify({ email, password }))
+    const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-    console.log("OAKJEHFAHD:FJA")
 
     console.log("reg: ", response)
 
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
 
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://api2.words.uz:3004/api/auth/verify", {
+    const response = await fetch(`${API_URL}/auth/verify`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ confirmationCode }),
