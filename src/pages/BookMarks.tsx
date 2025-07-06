@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-// import ErrorPage from './ErrorPage';
 import ProtectedRoute from '../components/ProtectedRoute';
-import { bookmarks } from '../hardcode/hardcode';
+import { bookmarks as fallbackBookmarks } from '../hardcode/hardcode';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
@@ -15,26 +14,63 @@ type BookMark = {
 
 const BookMarks: React.FC = () => {
   const navigate = useNavigate()
-  const [bookmarkList, setBookmarkList] = useState<BookMark[]>();
+  const [bookmarkList, setBookmarkList] = useState<BookMark[]>([]);
   const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBookmarks = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://api.words.uz/api/bookmarks`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch word details");
+
+        let accessToken = localStorage.getItem("accessToken");
+        const refreshToken = localStorage.getItem("refreshToken");
+
+        let response = await fetch(`https://api.words.uz/api/bookmarks`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        // If token expired, refresh it
+        if (response.status === 401 && refreshToken) {
+          console.warn("Access token expired, attempting refresh...");
+
+          const refreshRes = await fetch(`https://api.words.uz/api/auth/refresh`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ refreshToken }),
+          });
+
+          if (!refreshRes.ok) {
+            throw new Error("Unable to refresh access token");
+          }
+
+          const refreshData = await refreshRes.json();
+          accessToken = refreshData.accessToken;
+          localStorage.setItem("accessToken", accessToken);
+
+          // Retry request
+          response = await fetch(`https://api.words.uz/api/bookmarks`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
         }
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch bookmarks");
+        }
+
         const data = await response.json();
-        console.log("First Fetch:", data);
-        setBookmarkList(data)
-      } catch (err: any) {
-        // setError(err.message);
+        console.log("Fetched bookmarks:", data);
+        setBookmarkList(data);
+      } catch (err) {
+        console.error("Error fetching bookmarks:", err);
+        setBookmarkList(fallbackBookmarks); // fallback
       } finally {
         setLoading(false);
-        setBookmarkList(bookmarks)
       }
     };
 
@@ -52,28 +88,22 @@ const BookMarks: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:w-full min-w-[700px] overflow-auto items-start gap-4">
-            {
-              loading && <p>Loading...</p>
-              ||
-              // error && <ErrorPage />
-              // ||
-              !bookmarkList && <p>No data found.</p>
-              ||
-              bookmarkList &&
+            {loading ? (
+              <p>Loading...</p>
+            ) : bookmarkList.length === 0 ? (
+              <p>No bookmarks found.</p>
+            ) : (
               <div className="grid grid-cols-5 w-full items-start text-md rounded-md overflow-auto">
                 <div className="p-2 font-bold bg-green-primary text-white rounded-tl">Word</div>
-                <div className="p-2 font-bold bg-green-primary  text-white">Translation</div>
+                <div className="p-2 font-bold bg-green-primary text-white">Translation</div>
                 <div className="p-2 font-bold bg-green-primary text-white">Part of Speech</div>
                 <div className="p-2 font-bold bg-green-primary text-white">Level</div>
                 <div className="p-2 font-bold bg-green-primary text-white rounded-tr-md">Status</div>
 
-                {bookmarks?.map((el, index) => (
-                  <>
-                    <div className={`p-2 border-b border-l ${index % 2 === 0 ? "bg-white" : "bg-gray-200"}
-                      ${index == bookmarkList.length - 1 ? "rounded-b-md " : ""}`}>
-                      <Link
-                        to={`/en/${el.word}`}
-                        className="text-blue-500 hover:text-orange-400">
+                {bookmarkList.map((el, index) => (
+                  <React.Fragment key={`${el.word}-${index}`}>
+                    <div className={`p-2 border-b border-l ${index % 2 === 0 ? "bg-white" : "bg-gray-200"} ${index === bookmarkList.length - 1 ? "rounded-b-md" : ""}`}>
+                      <Link to={`/en/${el.word}`} className="text-blue-500 hover:text-orange-400">
                         <p>{el.word}</p>
                       </Link>
                     </div>
@@ -86,26 +116,25 @@ const BookMarks: React.FC = () => {
                     <div className={`p-2 border-b ${index % 2 === 0 ? "bg-white" : "bg-gray-200"}`}>
                       <p>{el.level}</p>
                     </div>
-                    <div className={`p-2 border-b border-r ${index % 2 === 0 ? "bg-white" : "bg-gray-200"} 
-                      ${index == bookmarkList.length - 1 ? "rounded-b-md " : ""}`}>
+                    <div className={`p-2 border-b border-r ${index % 2 === 0 ? "bg-white" : "bg-gray-200"} ${index === bookmarkList.length - 1 ? "rounded-b-md" : ""}`}>
                       <p>{el.status}</p>
                     </div>
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
-            }
+            )}
           </div>
-          <Button onClick={()=>navigate("/exercises")} className='bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400'>
+
+          <Button onClick={() => navigate("/exercises")} className="bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400">
             <i className="fa-solid fa-share mr-2"></i>
             Mashqlarga o'tish
           </Button>
-          <p>
-            Jami so'zlar soni: <b>{bookmarkList?.length}</b>.
-          </p>
+
+          <p>Jami so'zlar soni: <b>{bookmarkList.length}</b>.</p>
         </div>
       </div>
     </ProtectedRoute>
-  )
-}
+  );
+};
 
 export default BookMarks;
