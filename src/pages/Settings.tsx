@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
@@ -10,13 +10,19 @@ const Settings: React.FC = () => {
   const [oldPassword, setOldPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [confirmNewPassword, setConfirmNewPassword] = useState("")
+  const [email, setEmail] = useState<string | null>(null);
 
   const isMismatch = confirmNewPassword && newPassword !== confirmNewPassword
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    setEmail(storedEmail);
+  }, []);
+
 
   return (
     <ProtectedRoute>
       <>
-
         <div className="flex justify-center">
           <div className="flex flex-col gap-4 max-w-[945px]">
             <h1 className="text-2xl md:text-4xl font-bold">Akkaunt sozlamari</h1>
@@ -37,7 +43,7 @@ const Settings: React.FC = () => {
               Email
             </p>
             <p>
-              Email manzilingiz: <b>zawkindev@gmail.com</b>
+              Email manzilingiz: <b>{email}</b>
             </p>
             <Button onClick={() => setIsChangeEmailModalOpen(true)} className='bg-blue-500 w-fit rounded-md text-white hover:bg-blue-400'>
               <i className="fa-solid fa-envelope mr-2"></i>

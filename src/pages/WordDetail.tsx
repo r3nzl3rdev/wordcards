@@ -14,10 +14,52 @@ const WordDetail: React.FC = () => {
   const [tenseList, setTenseList] = useState<any>(null);
   const [isSaveWordModalOpen, setSaveWordModalOpen] = useState(false);
   const [isAddWordModalOpen, setAddWordModalOpen] = useState(false);
+  const [exampleEn, setExampleEn] = useState("");
+  const [exampleUz, setExampleUz] = useState("");
+
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(true);
+
+  const handleAddExample = async () => {
+    if (!wordDetails?.id || !exampleEn || !exampleUz) return;
+
+    const token = localStorage.getItem("accessToken");
+
+    try {
+      const res = await fetch(`${API_URL}/words/${wordDetails.id}/examples`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          phrase: exampleEn,
+          translation: exampleUz,
+          isVerified: false, // or true if you want
+        }),
+      });
+
+      console.log("Word ID:", wordDetails?.id);
+
+
+      if (!res.ok) {
+        throw new Error("Failed to add example");
+      }
+
+      const data = await res.json();
+      console.log("Example added:", data);
+      setAddWordModalOpen(false); // Close modal
+      setExampleEn("");
+      setExampleUz("");
+      setReload(true); // Trigger reload if you want to refetch data
+    } catch (err) {
+      console.error(err);
+      alert("Failed to add example.");
+    }
+  };
+
 
   useEffect(() => {
     const fetchWordDetails = async () => {
@@ -275,9 +317,22 @@ const WordDetail: React.FC = () => {
             <b>{word}</b> so'ziga jumla qo'shing va u adminlar tekshiruvdan
             o'tgandan so'ng saytda nashr etiladi.
           </p>
-          <Input id="example_en" label="Ingliz tilidagi namuna" />
-          <Input id="example_uz" label="O'zbek tilidagi tarjima" />
-          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit">
+          <Input
+            id="example_en"
+            label="Ingliz tilidagi namuna"
+            value={exampleEn}
+            onChange={(e) => setExampleEn(e.target.value)}
+          />
+          <Input
+            id="example_uz"
+            label="O'zbek tilidagi tarjima"
+            value={exampleUz}
+            onChange={(e) => setExampleUz(e.target.value)}
+          />
+          <Button
+            className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit"
+            onClick={handleAddExample}
+          >
             Qo'shish
           </Button>
         </div>
