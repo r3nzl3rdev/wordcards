@@ -26,9 +26,9 @@ const Login: React.FC = () => {
     const data = await response.json();
     if (response.ok) {
       console.log(data.data)
-      localStorage.setItem("email", email)
-      localStorage.setItem("accessToken", data.data.accessToken)
-      localStorage.setItem("refreshToken", data.data.refreshToken)
+      localStorage.setItem("email", data?.data?.email)
+      localStorage.setItem("accessToken", data?.data?.accessToken)
+      localStorage.setItem("refreshToken", data?.data?.refreshToken)
 
       alert("Login successful!");
       hardNavigate("/settings")
