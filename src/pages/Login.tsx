@@ -25,6 +25,7 @@ const Login: React.FC = () => {
 
     const data = await response.json();
     if (response.ok) {
+      console.log(data.data)
       localStorage.setItem("email", email)
       localStorage.setItem("accessToken", data.data.accessToken)
       localStorage.setItem("refreshToken", data.data.refreshToken)
@@ -34,20 +35,15 @@ const Login: React.FC = () => {
     } else {
       alert("Login failed!");
     }
-
-    console.log(data)
   };
 
   const handleRegSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("PRSSSSSSSSSSSSSSSS: ", JSON.stringify({ email, password }))
     const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-
-    console.log("reg: ", response)
 
     await response.json();
     if (response.ok) {
