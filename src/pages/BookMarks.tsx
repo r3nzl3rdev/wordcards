@@ -49,7 +49,8 @@ const BookMarks: React.FC = () => {
 
           const refreshData = await refreshRes.json();
           accessToken = refreshData.accessToken;
-          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("accessToken", accessToken ?? "");
+
 
           // Retry request
           response = await fetch(`https://api.words.uz/api/bookmarks`, {
