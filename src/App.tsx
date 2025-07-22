@@ -1,15 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
+import { SearchProvider, useSearch } from "./config/SearchContext";
 
-const App: React.FC= ()=> {
+
+const App: React.FC = () => {
   return (
-    <>
+    <SearchProvider>
       <Header />
       <div className="p-4 md:p-8 mt-12">
         <Outlet />
       </div>
-    </>
+    </SearchProvider>
   );
 }
 

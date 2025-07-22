@@ -5,18 +5,22 @@ import { menuOptions, authRoutes } from "../config/menuConfig";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { getGmailUsername } from "../utils";
+import { useSearch } from "../config/SearchContext";
 
 const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [username, setUsername] = useState("")
   const [isAuth, setIsAuth] = useState(false)
+  const { searchedWord } = useSearch();
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && searchTerm.trim()) {
       if (searchTerm.trim().includes(" ")) {
         alert("faqat bitta so'z kiriting");
       } else {
-        window.open(`/en/${searchTerm.trim()}`, "_self");
+        const word = searchTerm.trim();
+
+        window.open(`/en/${word}`, "_self");
       }
     }
   };
@@ -31,6 +35,12 @@ const Header: React.FC = () => {
       setIsAuth(true)
     }
   }, [])
+
+  useEffect(() => {
+  if (searchedWord) {
+    setSearchTerm(searchedWord); 
+  }
+}, [searchedWord]);
 
 
   return (

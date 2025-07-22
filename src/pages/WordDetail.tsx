@@ -7,16 +7,21 @@ import Modal from "../components/Modal";
 import Input from "../components/Input";
 import ErrorPage from "./ErrorPage";
 import { API_URL } from "../hardcode/hardcode";
+import { useSearch } from "../config/SearchContext";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
+  const { setSearchedWord } = useSearch();
   const [wordDetails, setWordDetails] = useState<any>(null);
   const [tenseList, setTenseList] = useState<any>(null);
   const [isSaveWordModalOpen, setSaveWordModalOpen] = useState(false);
   const [isAddWordModalOpen, setAddWordModalOpen] = useState(false);
   const [exampleEn, setExampleEn] = useState("");
   const [exampleUz, setExampleUz] = useState("");
-
+  const [titleUz, setTitleUz] = useState("");
+  const [transcription, setTranscription] = useState("");
+  const [usageFrequency, setUsageFrequency] = useState<number>(0);
+  const [anagrams, setAnagrams] = useState<string[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -91,6 +96,10 @@ const WordDetail: React.FC = () => {
       setReload(false);
     }
   }, [wordDetails]);
+
+  useEffect(() => {
+    if (word) setSearchedWord(word);
+  }, [word]);
 
   if (loading && reload) return <p>Loading...</p>;
   if (error) return <ErrorPage />;
