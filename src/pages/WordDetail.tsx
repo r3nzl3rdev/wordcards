@@ -22,6 +22,7 @@ const WordDetail: React.FC = () => {
   const [transcription, setTranscription] = useState("");
   const [usageFrequency, setUsageFrequency] = useState<number>(0);
   const [anagrams, setAnagrams] = useState<string[]>([]);
+  const [token, setToken] = useState<string | null>(null);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,7 +49,6 @@ const WordDetail: React.FC = () => {
 
       console.log("Word ID:", wordDetails?.id);
 
-
       if (!res.ok) {
         throw new Error("Failed to add example");
       }
@@ -65,13 +65,12 @@ const WordDetail: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
     const fetchWordDetails = async () => {
       try {
         setLoading(true);
         const response = await fetch(`${API_URL}/words/${word}`);
-        console.log("in: ", response)
+        console.log("in: ", response);
         if (!response.ok) {
           throw new Error("Failed to fetch word details");
         }
@@ -98,8 +97,17 @@ const WordDetail: React.FC = () => {
   }, [wordDetails]);
 
   useEffect(() => {
+    const token =
+      localStorage.getItem("accessToken") &&
+      localStorage.getItem("refreshToken");
+
+    setToken(token);
+  });
+
+  useEffect(() => {
     if (word) setSearchedWord(word);
   }, [word]);
+
 
   if (loading && reload) return <p>Loading...</p>;
   if (error) return <ErrorPage />;
@@ -110,21 +118,24 @@ const WordDetail: React.FC = () => {
       <h1 className="text-2xl md:text-4xl font-bold mb-4">{word}</h1>
       <div className="flex flex-wrap w-full gap-6">
         <div className="flex flex-col lg:flex-1 gap-4 items-start">
-          <p className="w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
-            Endi bizning veb-saytimizda
-            <Link to="/login">
-              <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-                &nbsp;shaxsiy hisob&nbsp;
-              </span>
-            </Link>
-            ochish imkoniyati bor!
-            <Link to="/interval-repetition">
-              <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
-                &nbsp;Intervalli takrorlash&nbsp;
-              </span>
-            </Link>
-            usuli yordamida so'zlarni yodlang!
-          </p>
+          {!token && (
+            <p className="w-full bg-yellow-100 p-4 shadow-lg shadow-gray-400">
+              Endi bizning veb-saytimizda
+              <Link to="/login">
+                <span className="text-blue-primary hover:text-orange-500 hover:cursor-pointer">
+                  &nbsp;shaxsiy hisob&nbsp;
+                </span>
+              </Link>
+              ochish imkoniyati bor!
+              <Link to="/interval-repetition">
+                <span className=" inline text-blue-primary hover:text-orange-500 hover:cursor-pointer">
+                  &nbsp;Intervalli takrorlash&nbsp;
+                </span>
+              </Link>
+              usuli yordamida so'zlarni yodlang!
+            </p>
+          )}
+
           <Button
             className="py-2 px-4 bg-blue-primary hover:bg-blue-400 rounded-md text-white"
             onClick={() => setSaveWordModalOpen(true)}
