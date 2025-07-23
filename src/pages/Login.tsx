@@ -50,6 +50,8 @@ const Login: React.FC = () => {
       body: JSON.stringify({ email, password }),
     });
 
+    console.log(JSON.stringify({ email, password }))
+
     await response.json();
     if (response.ok) {
       toast.warn("Kod yuborildi!");
@@ -72,6 +74,10 @@ const Login: React.FC = () => {
       localStorage.setItem("email", data?.data?.email)
       localStorage.setItem("accessToken", data?.data?.accessToken)
       localStorage.setItem("refreshToken", data?.data?.refreshToken)
+
+      setUser({
+        email: data?.data?.email
+      });
       toast.success("Registratsiya muvaffaqiyatli!");
       navigate("/settings")
     } else {
