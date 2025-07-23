@@ -8,6 +8,7 @@ import Input from "../components/Input";
 import ErrorPage from "./ErrorPage";
 import { API_URL } from "../hardcode/hardcode";
 import { useSearch } from "../config/SearchContext";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -61,7 +62,7 @@ const WordDetail: React.FC = () => {
       setReload(true); // Trigger reload if you want to refetch data
     } catch (err) {
       console.error(err);
-      alert("Failed to add example.");
+      toast.error("Namuna qo'shishda xatolik yuz berdi.");
     }
   };
 
@@ -115,6 +116,19 @@ const WordDetail: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-5">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <h1 className="text-2xl md:text-4xl font-bold mb-4">{word}</h1>
       <div className="flex flex-wrap w-full gap-6">
         <div className="flex flex-col lg:flex-1 gap-4 items-start">

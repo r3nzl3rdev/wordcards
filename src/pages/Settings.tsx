@@ -3,6 +3,7 @@ import ProtectedRoute from '../components/ProtectedRoute'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
 import Input from '../components/Input'
+import { toast } from 'react-toastify'
 
 const Settings: React.FC = () => {
   const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] = useState(false)
