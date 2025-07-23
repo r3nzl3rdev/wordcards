@@ -18,10 +18,10 @@ const WordDetail: React.FC = () => {
   const [isAddWordModalOpen, setAddWordModalOpen] = useState(false);
   const [exampleEn, setExampleEn] = useState("");
   const [exampleUz, setExampleUz] = useState("");
-  const [titleUz, setTitleUz] = useState("");
-  const [transcription, setTranscription] = useState("");
-  const [usageFrequency, setUsageFrequency] = useState<number>(0);
-  const [anagrams, setAnagrams] = useState<string[]>([]);
+  // const [titleUz, setTitleUz] = useState("");
+  // const [transcription, setTranscription] = useState("");
+  // const [usageFrequency, setUsageFrequency] = useState<number>(0);
+  // const [anagrams, setAnagrams] = useState<string[]>([]);
   const [token, setToken] = useState<string | null>(null);
 
   const [loading, setLoading] = useState(true);

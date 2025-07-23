@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import { SearchProvider, useSearch } from "./config/SearchContext";
+import { SearchProvider } from "./config/SearchContext";
 
 
 const App: React.FC = () => {
