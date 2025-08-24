@@ -4,9 +4,16 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const isAuthenticated = accessToken !== null && refreshToken !== null;
+  // ✅ true only if both tokens exist and are not empty strings
+  const isAuthenticated =
+    accessToken !== null &&
+    accessToken.trim() !== "" &&
+    refreshToken !== null &&
+    refreshToken.trim() !== "" &&
+    accessToken !== "undefined" &&
+    refreshToken !== "undefined";
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/logout" />;
 };
 
 export default ProtectedRoute;
