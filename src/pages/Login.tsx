@@ -3,8 +3,9 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
-import { hardNavigate } from "../utils";
 import { API_URL } from "../hardcode/hardcode";
+import { toast } from "react-toastify";
+import { useAuth } from "../config/AuthContext";
 
 const Login: React.FC = () => {
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
@@ -13,6 +14,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmationCode, setCode] = useState<string>("")
+  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
@@ -30,10 +32,13 @@ const Login: React.FC = () => {
       localStorage.setItem("accessToken", data?.data?.accessToken)
       localStorage.setItem("refreshToken", data?.data?.refreshToken)
 
-      alert("Login successful!");
-      hardNavigate("/settings")
+      toast.success("Login muvaffaqiyatli!");
+      setUser({
+        email: data?.data?.email
+      });
+      navigate('/settings')
     } else {
-      alert("Login failed!");
+      toast.success("Login bajarilmadi!");
     }
   };
 
@@ -45,12 +50,14 @@ const Login: React.FC = () => {
       body: JSON.stringify({ email, password }),
     });
 
+    console.log(JSON.stringify({ email, password }))
+
     await response.json();
     if (response.ok) {
-      alert("Code sent!");
+      toast.warn("Kod yuborildi!");
       setCodeSent(true)
     } else {
-      alert("Registration failed!");
+      toast.error("Registratsiya bajarilmadi!");
     }
   }
 
@@ -64,13 +71,17 @@ const Login: React.FC = () => {
 
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("email", data.email)
-      localStorage.setItem("accessToken", data.accessToken)
-      localStorage.setItem("refreshToken", data.refreshToken)
-      alert("Registered successfully!");
+      localStorage.setItem("email", data?.data?.email)
+      localStorage.setItem("accessToken", data?.data?.accessToken)
+      localStorage.setItem("refreshToken", data?.data?.refreshToken)
+
+      setUser({
+        email: data?.data?.email
+      });
+      toast.success("Registratsiya muvaffaqiyatli!");
       navigate("/settings")
     } else {
-      alert("Registration failed!");
+      toast.error("Registratsiya bajarilmadi!");
     }
     console.log(data)
   }
