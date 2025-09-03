@@ -1,5 +1,3 @@
-import { CardProps } from "../components/Card";
-
 export const API_URL = "https://api.words.uz/api";
 
 export const prefixList = [
@@ -767,29 +765,29 @@ export const bookmarks = [
   { word: "happy", translation: "xursand", part_of_speech: "sifat", level: 1, status: "o'rganilmoqda" }
 ]
 
-export const cards: CardProps[] = [
-  {
-    title: "Express test",
-    description: "Sizga tarjima qilish uchun 10 ta tasodifiy so'z taklif etiladi. Mashq oxirida o'rganish uchun noto'g'ri tarjimalar qo'shilishi mumkin.",
-    buttonTitle: "Boshlash",
-    wordCount: "50dan ortiq",
-    buttonColor: "green",
-    link: "/express"
-  },
-  {
-    title: "Eng-Uzb",
-    description: "Sizga ingliz tilidan o'zbek tiliga tarjima qilish uchun xatcho'plaringizdan so'zlar taklif etiladi. Bitta mashqda 10 dan ortiq so'z bo'lmaydi.",
-    buttonTitle: "Boshlash",
-    wordCount: "2",
-    buttonColor: "green",
-    link: "/eng-uzb"
-  },
-  {
-    title: "Xatcho'plar",
-    description: "Bu yerda siz qaysi so'zlarni belgilab qo'yganingizni ko'rishingiz mumkin. Bu so'zlar o'rganish uchun mavjud.",
-    buttonTitle: "Ko'rish",
-    wordCount: "2",
-    buttonColor: "blue",
-    link: "/bookmarks"
-  }
-]
+// export const cards: CardProps[] = [
+//   {
+//     title: "Express test",
+//     description: "Sizga tarjima qilish uchun 10 ta tasodifiy so'z taklif etiladi. Mashq oxirida o'rganish uchun noto'g'ri tarjimalar qo'shilishi mumkin.",
+//     buttonTitle: "Boshlash",
+//     wordCount: "50dan ortiq",
+//     buttonColor: "green",
+//     link: "/express"
+//   },
+//   {
+//     title: "Eng-Uzb",
+//     description: "Sizga ingliz tilidan o'zbek tiliga tarjima qilish uchun xatcho'plaringizdan so'zlar taklif etiladi. Bitta mashqda 10 dan ortiq so'z bo'lmaydi.",
+//     buttonTitle: "Boshlash",
+//     wordCount: "2",
+//     buttonColor: "green",
+//     link: "/eng-uzb"
+//   },
+//   {
+//     title: "Xatcho'plar",
+//     description: "Bu yerda siz qaysi so'zlarni belgilab qo'yganingizni ko'rishingiz mumkin. Bu so'zlar o'rganish uchun mavjud.",
+//     buttonTitle: "Ko'rish",
+//     wordCount: "2",
+//     buttonColor: "blue",
+//     link: "/bookmarks"
+//   }
+// ]
