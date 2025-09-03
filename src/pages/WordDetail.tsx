@@ -262,7 +262,7 @@ const WordDetail: React.FC = () => {
             <span className="font-bold">{wordDetails?.usageFrequency}</span> ta.
           </p>
           <p className="text-2xl font-bold">Namunaviy jumlalar</p>
-          {wordDetails?.exampleSentences?.map(
+          {wordDetails?.examples?.map(
             (
               s: {
                 sentence: string;
