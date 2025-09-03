@@ -28,7 +28,6 @@ export const wordsList = [
   "are",
   "area",
   "average",
-  "being",
   "book",
   "can",
   "census",

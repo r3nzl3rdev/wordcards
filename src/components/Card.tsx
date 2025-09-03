@@ -1,16 +1,14 @@
 import React from "react"
 import Button from "./Button"
-import { useNavigate } from "react-router-dom";
 
 type ButtonColor = 'blue' | 'green'
 
-export interface CardProps {
+interface CardProps {
+  gameId: string;
   title: string;
   description: string;
   buttonTitle: string;
-  wordCount: string;
   buttonColor: ButtonColor;
-  link: string;
 }
 
 const buttonStyle = {
@@ -18,26 +16,50 @@ const buttonStyle = {
   "green": "bg-green-primary"
 }
 
-const Card: React.FC<CardProps> = ({ title, description, buttonTitle, wordCount, buttonColor, link }) => {
-  const navigate = useNavigate();
+const Card: React.FC<CardProps> = ({ gameId, title, description, buttonTitle, buttonColor }) => {
+  const handleClick = async () => {
+    try {
+      const token = localStorage.getItem("accessToken")
+      const url = `https://api.words.uz/api/games/${gameId}`
+
+      console.log("📤 Request:", {
+        url,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+
+      const res = await fetch(url, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`)
+      }
+      const gameDetails = await res.json()
+      console.log("📥 Parsed Response:", gameDetails)
+    } catch (err) {
+      console.error("❌ Failed to fetch game details:", err)
+    }
+  }
 
   return (
     <div className="flex flex-col shadow-gray-500 shadow-lg max-w-[320px]" >
       <p className="text-2xl font-bold w-full px-4 py-3 bg-gray-200">{title}</p>
-      <p className="p-4">
-        {description}
-      </p>
-      <div className="w-[90%] self-center h-1 border-gray-200 border-b" />
-      <p className="p-4">
-        Jami so'zlar: <b>{wordCount}</b>
-      </p>
-      <Button onClick={() => navigate(link)} className={`${buttonStyle[buttonColor]} text-white hover:bg-gray-400 hover:text-black`}>
-        <p className="w-full items-center">
-          {buttonTitle}
-        </p>
+      <p className="p-4">{description}</p>
+      <Button
+        onClick={handleClick}
+        className={`${buttonStyle[buttonColor]} text-white hover:bg-gray-400 hover:text-black`}
+      >
+        <p className="w-full items-center">{buttonTitle}</p>
       </Button>
-    </div >
+    </div>
   )
 }
 
 export default Card
+

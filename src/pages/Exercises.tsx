@@ -1,10 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Card from '../components/Card'
-import { cards } from '../hardcode/hardcode'
 import ProtectedRoute from '../components/ProtectedRoute'
 
+interface Game {
+  id: string;
+  title: string;
+  description: string;
+}
+
 const Exercises: React.FC = () => {
+  const [games, setGames] = useState<Game[]>([])
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const token = localStorage.getItem("accessToken")
+        const url = "https://api.words.uz/api/games"
+
+        console.log("📤 Request:", {
+          url,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+
+        const res = await fetch(url, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`)
+        }
+        const json = await res.json()
+        console.log("📥 Parsed Response:", json)
+
+        setGames(json.data)
+      } catch (err) {
+        console.error("❌ Failed to fetch games:", err)
+      }
+    }
+
+    fetchGames()
+  }, [])
+
   return (
     <ProtectedRoute>
       <div className="flex w-full lg:justify-center">
@@ -20,19 +63,15 @@ const Exercises: React.FC = () => {
               </Link>ga
               qo'shilgan so'zlarni o'rganadigan mashqlar turini tanlashingiz mumkin.
             </p>
-            <p>
-              Agar siz hali xatcho'plaringizga so'z qo'shmagan bo'lsangiz, avvalo <b>Ekspress testdan</b> o'tishingizni tavsiya qilamiz.
-            </p>
             <div className="flex flex-wrap items-center flex-col md:flex-row p-2 gap-8 pb-6 max-w-[900px]">
-              {cards.map((el, index) => (
+              {games.map((game) => (
                 <Card
-                  key={index}
-                  title={el.title}
-                  description={el.description}
-                  buttonTitle={el.buttonTitle}
-                  buttonColor={el.buttonColor}
-                  wordCount={el.wordCount}
-                  link={el.link}
+                  key={game.id}
+                  gameId={game.id}
+                  title={game.title}
+                  description={game.description}
+                  buttonTitle="Ko‘rish"
+                  buttonColor="blue"
                 />
               ))}
             </div>
@@ -40,7 +79,6 @@ const Exercises: React.FC = () => {
         </div>
       </div>
     </ProtectedRoute>
-
   )
 }
 
