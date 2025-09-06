@@ -82,7 +82,7 @@ const BookMarks: React.FC = () => {
     <ProtectedRoute>
       <div className="flex justify-center">
         <div className="flex flex-col gap-4 max-w-[945px] overflow-auto no-scrollbar items-start">
-          <h1 className="text-2xl md:text-4xl font-bold">Xatcho‘plar</h1>
+          <h1 className="text-2xl md:text-4xl font-bold">Sandiq</h1>
           <p>
             Bu yerda siz o'zingiz belgilagan barcha so'zlarni, shuningdek ularni o'rganish jarayonini ko'rishingiz mumkin.
             Daraja so'zni o'rganish jarayonini ko'rsatadi. O'z darajangizni oshirish uchun mashqlarni bajaring.

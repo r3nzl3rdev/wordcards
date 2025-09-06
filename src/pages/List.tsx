@@ -4,6 +4,8 @@ import { prefixList } from "../hardcode/hardcode";
 
 const List: React.FC = () => {
   const { letter } = useParams<{ letter: string }>();
+  const prefixes = letter ? prefixList[letter.toLowerCase()] || [] : [];
+
   return (
     <div className="flex justify-center">
       <div className="flex flex-col gap-4 w-full max-w-[936px]">
@@ -14,32 +16,30 @@ const List: React.FC = () => {
           </span>{" "}
           harfi bilan boshlanadigan prefikslar ro'yxati:
         </p>
-        <div className="flex gap-[20%] w-full text-gray-500 text-xl px-4">
+        <div className="flex gap-[20%] w-full text-gray-500 px-4">
           <div className="flex flex-col gap-3">
-            {prefixList.slice(0, prefixList.length / 2).map((prefix, index) => {
-              return (
+            {prefixes
+              .slice(0, Math.ceil(prefixes.length / 2))
+              .map((prefix, index) => (
                 <p className="text-lg" key={index}>
                   <span className="text-blue-500 font-bold">
                     {prefix.title}
                   </span>{" "}
-                  {prefix.definition}
+                  {prefix.definitions.join(" - ")}
                 </p>
-              );
-            })}
+              ))}
           </div>
           <div className="flex flex-col gap-3">
-            {prefixList
-              .slice(prefixList.length / 2, prefixList.length)
-              .map((prefix, index) => {
-                return (
-                  <p className="text-lg" key={index}>
-                    <span className="text-blue-500 font-bold">
-                      {prefix.title}
-                    </span>{" "}
-                    {prefix.definition}
-                  </p>
-                );
-              })}
+            {prefixes
+              .slice(Math.ceil(prefixes.length / 2))
+              .map((prefix, index) => (
+                <p className="text-lg" key={index}>
+                  <span className="text-blue-500 font-bold">
+                    {prefix.title}
+                  </span>{" "}
+                  {prefix.definitions.join(" - ")}
+                </p>
+              ))}
           </div>
         </div>
       </div>
@@ -48,3 +48,4 @@ const List: React.FC = () => {
 };
 
 export default List;
+

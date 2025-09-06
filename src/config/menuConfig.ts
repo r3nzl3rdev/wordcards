@@ -12,7 +12,7 @@
 ];
 
 export const authRoutes = [
-  { title: "Xatcho‘plar", route: "/bookmarks" },
+  { title: "Sandiq", route: "/bookmarks" },
   { title: "Mashqlar", route: "/exercises" },
   { title: "Sozlamalar", route: "/settings" },
   { title: "Chiqish", route: "/logout" },

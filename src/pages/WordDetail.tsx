@@ -37,6 +37,45 @@ const WordDetail: React.FC = () => {
     speechSynthesis.speak(utterance);
   };
 
+  const handleAddExample = async () => {
+    if (!wordDetails?.id || !exampleEn || !exampleUz) return;
+    try {
+      const res = await fetch(
+        `${API_URL}/words/${wordDetails.id}/examples`, // ✅ correct URL
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // if required
+          },
+          body: JSON.stringify({
+            phrase: exampleEn,
+            translation: exampleUz,
+            isVerified: false, // let admin verify
+          }),
+        },
+      );
+
+      console.log("Word ID:", wordDetails?.id);
+
+      if (!res.ok) {
+        throw new Error("Failed to add example");
+      }
+
+      const data = await res.json();
+      console.log("Example added:", data);
+      toast.success("Namuna qo'shildi!");
+      setAddWordModalOpen(false);
+      setExampleEn("");
+      setExampleUz("");
+      setReload(true); // refetch wordDetails to include the new example
+    } catch (err) {
+      console.error(err);
+      toast.error("Namuna qo'shishda xatolik yuz berdi.");
+    }
+  };
+
+
   const handleSaveWord = async () => {
     if (!wordDetails?.id) return;
 
@@ -64,42 +103,6 @@ const WordDetail: React.FC = () => {
     }
 
   }
-
-  const handleAddExample = async () => {
-    if (!wordDetails?.id || !exampleEn || !exampleUz) return;
-    try {
-      const res = await fetch(
-        `${API_URL}/words/${wordDetails.id}/examples/suggest`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            phrase: exampleEn,
-            translation: exampleUz,
-            isVerified: false, // or true if you want
-          }),
-        },
-      );
-
-      console.log("Word ID:", wordDetails?.id);
-
-      if (!res.ok) {
-        throw new Error("Failed to add example");
-      }
-
-      const data = await res.json();
-      console.log("Example added:", data);
-      setAddWordModalOpen(false); // Close modal
-      setExampleEn("");
-      setExampleUz("");
-      setReload(true); // Trigger reload if you want to refetch data
-    } catch (err) {
-      console.error(err);
-      toast.error("Namuna qo'shishda xatolik yuz berdi.");
-    }
-  };
 
   useEffect(() => {
     const fetchWordDetails = async () => {
@@ -191,7 +194,7 @@ const WordDetail: React.FC = () => {
             onClick={() => setSaveWordModalOpen(true)}
           >
             <i className="fa-solid fa-bookmark mr-1"></i>
-            Saqlanganlarga qo'shish
+            Sandiqqa qo'shish
           </Button>
           <div className="flex gap-2 items-center">
             <p className="text-2xl font-bold text-green-primary">

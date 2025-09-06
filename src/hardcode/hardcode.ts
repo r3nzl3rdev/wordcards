@@ -1,22 +1,251 @@
 export const API_URL = "https://api.words.uz/api";
 
-export const prefixList = [
-  { title: "j j", definition: "- j" },
-  { title: "j-", definition: "- j-pop" },
-  { title: "ja", definition: "jab - jazzy" },
-  { title: "je", definition: "jealous - jews" },
-  { title: "jf", definition: "jfk - jfk" },
-  { title: "jh", definition: "jhansi - jhelum" },
-  { title: "ji", definition: "ji - jive" },
-  { title: "jl", definition: "jl - jl" },
-  { title: "jo", definition: "jo - joysticks" },
-  { title: "jp", definition: "jp - jpeg" },
-  { title: "jr", definition: "jr - jr" },
-  { title: "js", definition: "js - json" },
-  { title: "ju", definition: "juan - juxtaposition" },
-  { title: "jv", definition: "jvm - jvm" },
-  { title: "jy", definition: "jyutping - jyutping" },
-];
+// hardcode/hardcode.ts
+export const prefixList: Record<string, { title: string; definitions: string[] }[]> = {
+  a: [
+    { title: "a-", definitions: ["amoral", "atypical"] },
+    { title: "ab-", definitions: ["abduct", "abnormal"] },
+    { title: "ac-", definitions: ["accept", "access"] },
+    { title: "ad-", definitions: ["advance", "adhere"] },
+    { title: "af-", definitions: ["affirm", "affect"] },
+    { title: "ag-", definitions: ["aggravate", "aggression"] },
+    { title: "al-", definitions: ["allocate", "allude"] },
+    { title: "an-", definitions: ["anonymous", "anhydrous"] },
+    { title: "ar-", definitions: ["arrive", "arrest"] },
+    { title: "as-", definitions: ["assign", "assume"] },
+    { title: "at-", definitions: ["attain", "attract"] },
+  ],
+  b: [
+    { title: "b-", definitions: ["b-side", "b-movie"] },
+    { title: "ba", definitions: ["baby", "balance"] },
+    { title: "be", definitions: ["before", "begin"] },
+    { title: "bi", definitions: ["bicycle", "bilingual"] },
+    { title: "bl", definitions: ["black", "blink"] },
+    { title: "bo", definitions: ["bold", "bonus"] },
+    { title: "br", definitions: ["bring", "broad"] },
+    { title: "bu", definitions: ["build", "burn"] },
+    { title: "by", definitions: ["bypass", "bylaw"] },
+  ],
+
+  c: [
+    { title: "c-", definitions: ["c-section", "c-programming"] },
+    { title: "ca", definitions: ["calculate", "capacity"] },
+    { title: "ce", definitions: ["center", "cell"] },
+    { title: "ci", definitions: ["circle", "civil"] },
+    { title: "cl", definitions: ["close", "clock"] },
+    { title: "co-", definitions: ["cooperate", "coexist"] },
+    { title: "com-", definitions: ["combine", "compact"] },
+    { title: "con-", definitions: ["connect", "construct"] },
+    { title: "cr", definitions: ["create", "cross"] },
+    { title: "cu", definitions: ["culture", "custom"] },
+    { title: "cy", definitions: ["cycle", "cyber"] },
+  ],
+  d: [
+    { title: "d-", definitions: ["d-day", "d-block"] },
+    { title: "de-", definitions: ["deactivate", "decline"] },
+    { title: "di-", definitions: ["divide", "dioxide"] },
+    { title: "do", definitions: ["doctrine", "donate"] },
+    { title: "dr", definitions: ["drive", "draft"] },
+    { title: "du", definitions: ["dual", "duplicate"] },
+    { title: "dy", definitions: ["dynamic", "dystopia"] },
+  ],
+  e: [
+    { title: "e-", definitions: ["e-mail", "e-book"] },
+    { title: "ec-", definitions: ["ecology", "economy"] },
+    { title: "ef-", definitions: ["effect", "efficient"] },
+    { title: "eg-", definitions: ["egress", "eglandular"] },
+    { title: "em-", definitions: ["empower", "embark"] },
+    { title: "en-", definitions: ["enable", "encourage"] },
+    { title: "ex-", definitions: ["exit", "exclude"] },
+  ],
+  f: [
+    { title: "f-", definitions: ["f-stop", "f-number"] },
+    { title: "fa", definitions: ["factor", "family"] },
+    { title: "fe", definitions: ["female", "federal"] },
+    { title: "fi", definitions: ["final", "figure"] },
+    { title: "fo", definitions: ["focus", "follow"] },
+    { title: "fr", definitions: ["free", "front"] },
+    { title: "fu", definitions: ["function", "future"] },
+  ],
+
+  g: [
+    { title: "g-", definitions: ["g-force", "g-string"] },
+    { title: "ga", definitions: ["galaxy", "gather"] },
+    { title: "ge", definitions: ["general", "geology"] },
+    { title: "gi", definitions: ["giant", "giraffe"] },
+    { title: "gl", definitions: ["global", "glance"] },
+    { title: "gr", definitions: ["green", "grow"] },
+    { title: "gu", definitions: ["guide", "guard"] },
+  ],
+  h: [
+    { title: "h-", definitions: ["h-index", "h-bomb"] },
+    { title: "ha", definitions: ["happy", "habit"] },
+    { title: "he", definitions: ["hero", "health"] },
+    { title: "hi", definitions: ["high", "history"] },
+    { title: "ho", definitions: ["hope", "holiday"] },
+    { title: "hu", definitions: ["human", "huge"] },
+    { title: "hy-", definitions: ["hyperactive", "hybrid"] },
+  ],
+
+  i: [
+    { title: "i-", definitions: ["i-phone", "i-pad"] },
+    { title: "il-", definitions: ["illegal", "illogical"] },
+    { title: "im-", definitions: ["impossible", "immortal"] },
+    { title: "in-", definitions: ["inactive", "include"] },
+    { title: "ir-", definitions: ["irregular", "irrelevant"] },
+    { title: "is-", definitions: ["isolate", "issue"] },
+    { title: "it", definitions: ["item", "italics"] },
+  ],
+
+  j: [
+    { title: "j-", definitions: ["j-pop", "j-rock"] },
+    { title: "ja", definitions: ["jacket", "jazz"] },
+    { title: "je", definitions: ["jewel", "jealous"] },
+    { title: "ji", definitions: ["jigsaw", "jingle"] },
+    { title: "jo", definitions: ["job", "journey"] },
+    { title: "ju", definitions: ["jump", "justice"] },
+  ],
+
+  k: [
+    { title: "k-", definitions: ["k-pop", "k-drama"] },
+    { title: "ka", definitions: ["kangaroo", "karate"] },
+    { title: "ke", definitions: ["kernel", "keystone"] },
+    { title: "ki", definitions: ["king", "kilo"] },
+    { title: "ko", definitions: ["koala", "komodo"] },
+    { title: "ku", definitions: ["kudos", "kultur"] },
+  ],
+
+  l: [
+    { title: "l-", definitions: ["l-plate", "l-glucose"] },
+    { title: "la", definitions: ["labor", "language"] },
+    { title: "le", definitions: ["legal", "level"] },
+    { title: "li", definitions: ["light", "limit"] },
+    { title: "lo", definitions: ["local", "logic"] },
+    { title: "lu", definitions: ["lunar", "lucky"] },
+  ],
+
+  m: [
+    { title: "m-", definitions: ["m-dash", "mRNA"] },
+    { title: "ma", definitions: ["major", "manual"] },
+    { title: "me", definitions: ["medical", "memory"] },
+    { title: "mi", definitions: ["micro", "middle"] },
+    { title: "mo", definitions: ["modern", "motion"] },
+    { title: "mu", definitions: ["multi", "museum"] },
+    { title: "my", definitions: ["mystery", "myth"] },
+  ],
+
+  n: [
+    { title: "n-", definitions: ["n-dimensional", "n-type"] },
+    { title: "na", definitions: ["nation", "natural"] },
+    { title: "ne", definitions: ["negative", "network"] },
+    { title: "ni", definitions: ["nitrogen", "nimble"] },
+    { title: "no", definitions: ["normal", "notice"] },
+    { title: "nu", definitions: ["number", "nuclear"] },
+  ],
+
+  o: [
+    { title: "o-", definitions: ["o'clock", "o-ring"] },
+    { title: "ob-", definitions: ["object", "obtain"] },
+    { title: "oc-", definitions: ["occur", "occupy"] },
+    { title: "of-", definitions: ["offer", "official"] },
+    { title: "op-", definitions: ["operate", "oppose"] },
+    { title: "or-", definitions: ["origin", "organ"] },
+    { title: "ov-", definitions: ["oval", "over"] },
+  ],
+
+  p: [
+    { title: "p-", definitions: ["p-value", "p-wave"] },
+    { title: "pa", definitions: ["parent", "panel"] },
+    { title: "pe", definitions: ["people", "permit"] },
+    { title: "ph-", definitions: ["phone", "photo"] },
+    { title: "pi", definitions: ["picture", "pilot"] },
+    { title: "pl", definitions: ["place", "planet"] },
+    { title: "po", definitions: ["power", "policy"] },
+    { title: "pr", definitions: ["press", "protect"] },
+    { title: "pu", definitions: ["public", "purpose"] },
+  ],
+
+  q: [
+    { title: "qu", definitions: ["quick", "quality"] },
+  ],
+
+  r: [
+    { title: "r-", definitions: ["r-value", "r-process"] },
+    { title: "ra", definitions: ["radio", "rapid"] },
+    { title: "re-", definitions: ["redo", "rebuild"] },
+    { title: "ri", definitions: ["river", "rise"] },
+    { title: "ro", definitions: ["rotate", "robot"] },
+    { title: "ru", definitions: ["rural", "rule"] },
+  ],
+
+  s: [
+    { title: "s-", definitions: ["s-wave", "s-shape"] },
+    { title: "sa", definitions: ["safe", "sample"] },
+    { title: "se", definitions: ["second", "section"] },
+    { title: "si", definitions: ["signal", "simple"] },
+    { title: "so", definitions: ["social", "solid"] },
+    { title: "su", definitions: ["super", "support"] },
+    { title: "sy-", definitions: ["synchronize", "sympathy"] },
+  ],
+
+  t: [
+    { title: "t-", definitions: ["t-shirt", "t-bone"] },
+    { title: "ta", definitions: ["table", "target"] },
+    { title: "te", definitions: ["team", "technical"] },
+    { title: "ti", definitions: ["time", "tissue"] },
+    { title: "to", definitions: ["total", "topic"] },
+    { title: "tr", definitions: ["train", "trust"] },
+    { title: "tu", definitions: ["tunnel", "tutor"] },
+  ],
+
+  u: [
+    { title: "u-", definitions: ["u-turn", "u-boat"] },
+    { title: "ul-", definitions: ["ultra", "ultimate"] },
+    { title: "un-", definitions: ["unknown", "unhappy"] },
+    { title: "up-", definitions: ["upgrade", "uphold"] },
+    { title: "ur-", definitions: ["urban", "urgent"] },
+    { title: "us", definitions: ["usage", "usual"] },
+  ],
+
+  v: [
+    { title: "v-", definitions: ["v-neck", "v-shape"] },
+    { title: "va", definitions: ["value", "valid"] },
+    { title: "ve", definitions: ["verify", "venture"] },
+    { title: "vi", definitions: ["visual", "vital"] },
+    { title: "vo", definitions: ["voice", "volume"] },
+  ],
+
+  w: [
+    { title: "w-", definitions: ["w-type", "w-band"] },
+    { title: "wa", definitions: ["water", "warm"] },
+    { title: "we", definitions: ["weather", "west"] },
+    { title: "wi", definitions: ["window", "winter"] },
+    { title: "wo", definitions: ["world", "wonder"] },
+  ],
+
+  x: [
+    { title: "x-", definitions: ["x-ray", "x-axis"] },
+    { title: "xi", definitions: ["xilinx", "xiphoid"] },
+    { title: "xu", definitions: ["xuv", "xulane"] },
+  ],
+
+  y: [
+    { title: "y-", definitions: ["y-axis", "y-intercept"] },
+    { title: "ya", definitions: ["yard", "yawn"] },
+    { title: "ye", definitions: ["yellow", "year"] },
+    { title: "yo", definitions: ["young", "yoga"] },
+  ],
+
+  z: [
+    { title: "z-", definitions: ["z-score", "z-line"] },
+    { title: "za", definitions: ["zambia", "zap"] },
+    { title: "ze", definitions: ["zero", "zebra"] },
+    { title: "zi", definitions: ["zinc", "zip"] },
+    { title: "zo", definitions: ["zone", "zoology"] },
+  ],
+};
+
+
 
 export const wordsList = [
   "according",
