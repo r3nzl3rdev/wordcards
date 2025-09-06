@@ -15,6 +15,7 @@ const Header: React.FC = () => {
   // const { setUser } = useAuth();
   const [isAuth, setIsAuth] = useState(false)
   const { searchedWord } = useSearch();
+  const [email, setEmail] = useState("")
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && searchTerm.trim()) {
@@ -33,6 +34,7 @@ const Header: React.FC = () => {
 
     if (token && email) {
       setIsAuth(true)
+      setEmail(email)
     }
   }, [user])
 
@@ -60,7 +62,7 @@ const Header: React.FC = () => {
         isAuth ?
           <Menu options={authRoutes} itemsPosition="right">
             <i className="fa-solid fa-user text-lg sm:text-sm"></i>
-            <p className="hidden sm:flex">{user?.email}</p>
+            <p className="hidden sm:flex">{user?.email || email}</p>
             <i className="fa-solid fa-caret-down text-lg"></i>
           </Menu>
           :

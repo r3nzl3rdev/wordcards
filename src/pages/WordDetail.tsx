@@ -37,11 +37,36 @@ const WordDetail: React.FC = () => {
     speechSynthesis.speak(utterance);
   };
 
+  const handleSaveWord = async () => {
+    if (!wordDetails?.id) return;
+
+    try {
+      const res = await fetch(`${API_URL}/bookmarks/${wordDetails.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // if required
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to save word");
+      }
+
+      const data = await res.json();
+      console.log("Word bookmarked:", data);
+
+      toast.success("So'z sandiqqa qo'shildi!");
+      setSaveWordModalOpen(false); // close modal
+    } catch (err) {
+      console.error(err);
+      toast.error("So'zni qo'shishda xatolik yuz berdi.");
+    }
+
+  }
 
   const handleAddExample = async () => {
     if (!wordDetails?.id || !exampleEn || !exampleUz) return;
-
-
     try {
       const res = await fetch(
         `${API_URL}/words/${wordDetails.id}/examples/suggest`,
@@ -349,7 +374,10 @@ const WordDetail: React.FC = () => {
               <option value="verb">Fe'l</option>
             </select>
           </div>
-          <Button className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit">
+          <Button
+            className="bg-green-500 hover:bg-green-400 rounded-md text-white w-fit"
+            onClick={handleSaveWord}
+          >
             Qo'shish
           </Button>
         </div>

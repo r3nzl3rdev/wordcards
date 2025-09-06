@@ -38,7 +38,7 @@ const Login: React.FC = () => {
       });
       navigate('/settings')
     } else {
-      toast.success("Login bajarilmadi!");
+      toast.error("Login bajarilmadi!");
     }
   };
 
