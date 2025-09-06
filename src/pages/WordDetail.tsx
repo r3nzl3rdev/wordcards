@@ -29,6 +29,15 @@ const WordDetail: React.FC = () => {
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(true);
 
+  const handleSpeak = (text: string) => {
+    if (!text) return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US"; // You can switch this to "uz-UZ" if Uzbek voices are available
+    speechSynthesis.speak(utterance);
+  };
+
+
   const handleAddExample = async () => {
     if (!wordDetails?.id || !exampleEn || !exampleUz) return;
 
@@ -161,7 +170,10 @@ const WordDetail: React.FC = () => {
             <p className="text-2xl font-bold text-green-primary">
               [{wordDetails?.transcription}]
             </p>
-            <button className="py-2 px-3 border bg-gray-100 border-gray-300 rounded-md hover:bg-gray-300 hover:border-gray-400">
+            <button
+              onClick={() => handleSpeak(word || "")}
+              className="py-2 px-3 border bg-gray-100 border-gray-300 rounded-md hover:bg-gray-300 hover:border-gray-400"
+            >
               <i className="fa-solid fa-volume-high"></i>
             </button>
           </div>
