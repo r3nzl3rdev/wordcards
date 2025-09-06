@@ -8,7 +8,7 @@ import Input from "../components/Input";
 import ErrorPage from "./ErrorPage";
 import { API_URL } from "../hardcode/hardcode";
 import { useSearch } from "../config/SearchContext";
-import { ToastContainer, toast, Bounce } from 'react-toastify';
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -32,21 +32,22 @@ const WordDetail: React.FC = () => {
   const handleAddExample = async () => {
     if (!wordDetails?.id || !exampleEn || !exampleUz) return;
 
-    const token = localStorage.getItem("accessToken");
 
     try {
-      const res = await fetch(`${API_URL}/words/${wordDetails.id}/examples`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `${API_URL}/words/${wordDetails.id}/examples/suggest`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            phrase: exampleEn,
+            translation: exampleUz,
+            isVerified: false, // or true if you want
+          }),
         },
-        body: JSON.stringify({
-          phrase: exampleEn,
-          translation: exampleUz,
-          isVerified: false, // or true if you want
-        }),
-      });
+      );
 
       console.log("Word ID:", wordDetails?.id);
 
@@ -89,6 +90,8 @@ const WordDetail: React.FC = () => {
     fetchWordDetails();
   }, [word, reload]);
 
+  console.log("examples: ", wordDetails?.examples);
+
   // Trigger second fetch after first one completes
   useEffect(() => {
     if (wordDetails) {
@@ -108,7 +111,6 @@ const WordDetail: React.FC = () => {
   useEffect(() => {
     if (word) setSearchedWord(word);
   }, [word]);
-
 
   if (loading && reload) return <p>Loading...</p>;
   if (error) return <ErrorPage />;
@@ -265,14 +267,14 @@ const WordDetail: React.FC = () => {
           {wordDetails?.examples?.map(
             (
               s: {
-                sentence: string;
+                phrase: string;
                 translation: string;
               },
               index: React.Key | null | undefined,
             ) => {
               return (
                 <div key={index} className="flex flex-col">
-                  <p>{s.sentence}</p>
+                  <p>{s.phrase}</p>
                   <p className="italic text-gray-500">{s.translation}</p>
                 </div>
               );
