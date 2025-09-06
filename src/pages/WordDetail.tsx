@@ -8,7 +8,7 @@ import Input from "../components/Input";
 import ErrorPage from "./ErrorPage";
 import { API_URL } from "../hardcode/hardcode";
 import { useSearch } from "../config/SearchContext";
-import { ToastContainer, toast, Bounce } from 'react-toastify';
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const WordDetail: React.FC = () => {
   const { word } = useParams<{ word: string }>();
@@ -109,6 +109,67 @@ const WordDetail: React.FC = () => {
     if (word) setSearchedWord(word);
   }, [word]);
 
+  function handlePlayAudio() {
+    try {
+      const text = word || wordDetails?.word || "";
+      if (!text) {
+        toast.info("Matn topilmadi.");
+        return;
+      }
+
+      const synth: SpeechSynthesis | undefined =
+        typeof window !== "undefined" ? window.speechSynthesis : undefined;
+      const Utter: typeof SpeechSynthesisUtterance | undefined =
+        typeof window !== "undefined"
+          ? window.SpeechSynthesisUtterance
+          : undefined;
+
+      if (!synth || !Utter) {
+        toast.error("Brauzer ovozli o'qishni qo'llab-quvvatlamaydi.");
+        return;
+      }
+
+      if (synth.speaking || synth.pending) {
+        synth.cancel();
+      }
+
+      const utterance = new Utter(text);
+
+      const pickVoice = () => {
+        const voices = synth.getVoices ? synth.getVoices() : [];
+        if (voices && voices.length) {
+          const preferred =
+            voices.find((v) => /en-(US|GB)/i.test(v.lang)) ||
+            voices.find((v) => /^en/i.test(v.lang));
+          if (preferred) utterance.voice = preferred;
+        }
+      };
+
+      if (synth.onvoiceschanged !== undefined) {
+        pickVoice();
+        const handler = () => {
+          pickVoice();
+          synth.onvoiceschanged = null;
+        };
+        synth.onvoiceschanged = handler;
+      } else {
+        pickVoice();
+      }
+
+      utterance.rate = 0.95;
+      utterance.pitch = 1.0;
+      utterance.volume = 1.0;
+
+      utterance.onerror = () => {
+        toast.error("Ovoz ijrosida xatolik yuz berdi.");
+      };
+
+      synth.speak(utterance as unknown as SpeechSynthesisUtterance);
+    } catch (e) {
+      console.error(e);
+      toast.error("Ovoz ijro qilishda kutilmagan xatolik.");
+    }
+  }
 
   if (loading && reload) return <p>Loading...</p>;
   if (error) return <ErrorPage />;
@@ -161,7 +222,10 @@ const WordDetail: React.FC = () => {
             <p className="text-2xl font-bold text-green-primary">
               [{wordDetails?.transcription}]
             </p>
-            <button className="py-2 px-3 border bg-gray-100 border-gray-300 rounded-md hover:bg-gray-300 hover:border-gray-400">
+            <button
+              onClick={handlePlayAudio}
+              className="py-2 px-3 border bg-gray-100 border-gray-300 rounded-md hover:bg-gray-300 hover:border-gray-400"
+            >
               <i className="fa-solid fa-volume-high"></i>
             </button>
           </div>
