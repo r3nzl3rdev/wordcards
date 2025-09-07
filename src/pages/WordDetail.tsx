@@ -41,7 +41,7 @@ const WordDetail: React.FC = () => {
     if (!wordDetails?.id || !exampleEn || !exampleUz) return;
     try {
       const res = await fetch(
-        `${API_URL}/words/${wordDetails.id}/examples`, // ✅ correct URL
+        `${API_URL}/words/${wordDetails.id}/examples/suggest`, // ✅ correct URL
         {
           method: "PATCH",
           headers: {
@@ -51,7 +51,6 @@ const WordDetail: React.FC = () => {
           body: JSON.stringify({
             phrase: exampleEn,
             translation: exampleUz,
-            isVerified: false, // let admin verify
           }),
         },
       );
