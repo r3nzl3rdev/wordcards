@@ -29,6 +29,38 @@ const WordDetail: React.FC = () => {
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(true);
 
+  const handleAddComment = async (username: string, text: string) => {
+    if (!wordDetails?.id) return;
+
+    try {
+      const res = await fetch(`${API_URL}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // if required
+        },
+        body: JSON.stringify({
+          username,
+          text,
+          wordId: wordDetails.id,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to add comment");
+      }
+
+      const data = await res.json();
+      console.log("Comment added:", data);
+
+      toast.success("Sharh qo'shildi!");
+      setReload(true); // 🔄 re-fetch comments
+    } catch (err) {
+      console.error(err);
+      toast.error("Sharh qo'shishda xatolik yuz berdi.");
+    }
+  };
+
   const handleSpeak = (text: string) => {
     if (!text) return;
 
@@ -43,7 +75,7 @@ const WordDetail: React.FC = () => {
       const res = await fetch(
         `${API_URL}/words/${wordDetails.id}/examples/suggest`, // ✅ correct URL
         {
-          method: "PATCH",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // if required
@@ -74,7 +106,6 @@ const WordDetail: React.FC = () => {
     }
   };
 
-
   const handleSaveWord = async () => {
     if (!wordDetails?.id) return;
 
@@ -100,8 +131,7 @@ const WordDetail: React.FC = () => {
       console.error(err);
       toast.error("So'zni qo'shishda xatolik yuz berdi.");
     }
-
-  }
+  };
 
   useEffect(() => {
     const fetchWordDetails = async () => {
@@ -339,7 +369,7 @@ const WordDetail: React.FC = () => {
           sharh qoldirshingiz mumkin. Sharh faqat o'zbek yoki ingliz tillarida
           bo'lishi kerak.
         </p>
-        <AddCommentBox />
+        <AddCommentBox onSubmit={handleAddComment} />
       </div>
 
       <Modal
